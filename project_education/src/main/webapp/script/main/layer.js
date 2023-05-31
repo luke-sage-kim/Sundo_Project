@@ -76,6 +76,7 @@ let drawLayer = new ol.layer.Vector({
         map.removeInteraction(draw);
         drawLayer.getSource().clear();
         polygonCoordinates = []; // 저장된 위치 정보 초기화
+		addInteraction(); // 폴리곤 그리기 기능 다시 추가
     }
 
     function addInteraction() {
@@ -100,6 +101,12 @@ let drawLayer = new ol.layer.Vector({
                 polygonCoordinates = coordinates.map(function(coordinate) {
                     return ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326');
                 });
+
+				// 꼭지점이 6개 초과인 경우에 알람 띄우기
+                if (polygonCoordinates.length > 6) {
+                    alert("삼각형, 사각형 또는 오각형 모양으로 그려주세요");
+                    setTimeout(resetMap, 0); // 비동기적으로 resetMap() 함수 실행
+                }
 
                 // 필요한 경우 저장된 위치 정보를 활용할 수 있습니다.
                 console.log(polygonCoordinates);
