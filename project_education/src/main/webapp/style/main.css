@@ -4,12 +4,57 @@
 
 
 .main-wrap {padding:50px 40px; width:calc(100% - 250px); margin-left:250px;}
+.scrollable-div {
+   width: 100%;
+   height: 100%;
+   overflow: auto;
+}
+.scrollable-div ul {
+   list-style-type: none;
+   padding-left: 10px;
+}
+.scrollable-div ul ul {
+   display: none;
+   margin-left: 10px;
+}
+.scrollable-div li {
+   position: relative;
+   padding-left: 10px;
+}
 
+#clusterDistance{
+   padding:0 15px 0 15px;
+}
 
+.custom-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
 
+.custom-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+}
 
+.custom-close {
+  float: right;
+  cursor: pointer;
+}
 
-
+#coordinates-list {
+  margin-top: 10px;
+  padding: 0;
+}
 
 
 

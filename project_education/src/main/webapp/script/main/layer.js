@@ -2,41 +2,41 @@
       
  // 브이월드 지도(base~Satelite)
 let Base = new ol.layer.Tile({
-	name : "Base",
-	source: new ol.source.XYZ({
-		url: 'http://api.vworld.kr/req/wmts/1.0.0/1E878C02-B854-3C6F-B2E7-8FFE0E33253C/Base/{z}/{y}/{x}.png'  // WMTS API 사용
-	})
+   name : "Base",
+   source: new ol.source.XYZ({
+      url: 'http://api.vworld.kr/req/wmts/1.0.0/1E878C02-B854-3C6F-B2E7-8FFE0E33253C/Base/{z}/{y}/{x}.png'  // WMTS API 사용
+   })
 });
   
 let white = new ol.layer.Tile({
-		name : "white",
-		source: new ol.source.XYZ({
-			url: 'http://api.vworld.kr/req/wmts/1.0.0/1E878C02-B854-3C6F-B2E7-8FFE0E33253C/white/{z}/{y}/{x}.png'  // WMTS API 사용
-		})
-	});
+      name : "white",
+      source: new ol.source.XYZ({
+         url: 'http://api.vworld.kr/req/wmts/1.0.0/1E878C02-B854-3C6F-B2E7-8FFE0E33253C/white/{z}/{y}/{x}.png'  // WMTS API 사용
+      })
+   });
   
 let midnight = new ol.layer.Tile({
-	name : "midnight",
-	source: new ol.source.XYZ({
-		url: 'http://api.vworld.kr/req/wmts/1.0.0/1E878C02-B854-3C6F-B2E7-8FFE0E33253C/midnight/{z}/{y}/{x}.png'  // WMTS API 사용
-	})
+   name : "midnight",
+   source: new ol.source.XYZ({
+      url: 'http://api.vworld.kr/req/wmts/1.0.0/1E878C02-B854-3C6F-B2E7-8FFE0E33253C/midnight/{z}/{y}/{x}.png'  // WMTS API 사용
+   })
 });
 
 let Hybrid = new ol.layer.Tile({
-	name : "Hybrid",
-	source: new ol.source.XYZ({
-		url: 'http://api.vworld.kr/req/wmts/1.0.0/1E878C02-B854-3C6F-B2E7-8FFE0E33253C/Hybrid/{z}/{y}/{x}.png'  // WMTS API 사용
-	})
+   name : "Hybrid",
+   source: new ol.source.XYZ({
+      url: 'http://api.vworld.kr/req/wmts/1.0.0/1E878C02-B854-3C6F-B2E7-8FFE0E33253C/Hybrid/{z}/{y}/{x}.png'  // WMTS API 사용
+   })
 });
 
 let Satellite = new ol.layer.Tile({
-	name : "Satellite",
-	source: new ol.source.XYZ({
-		url: 'http://api.vworld.kr/req/wmts/1.0.0/1E878C02-B854-3C6F-B2E7-8FFE0E33253C/Satellite/{z}/{y}/{x}.jpeg'  // WMTS API 사용
-	})
+   name : "Satellite",
+   source: new ol.source.XYZ({
+      url: 'http://api.vworld.kr/req/wmts/1.0.0/1E878C02-B854-3C6F-B2E7-8FFE0E33253C/Satellite/{z}/{y}/{x}.jpeg'  // WMTS API 사용
+   })
 });
   
-	
+   
   //vworld 지도 입력 
   var map = new ol.Map({
     layers: [Hybrid, white, Satellite, Base],
@@ -92,32 +92,32 @@ function updateLayerByName(name) {
 
 // 보호구역 레이어 입력
  var protectedAreaLayer = new ol.layer.Tile({
-	source : new ol.source.TileWMS({
-		url : 'http://210.113.102.169:8090/geoserver/EDU8/wms?service=WMS', // 1. 레이어 URL
-		params : {
-			'VERSION' : '1.1.0', // 2. 버전
-			'LAYERS' : 'EDU8:protected_area_layer', // 3. 작업공간:레이어 명
-			'BBOX' : [124.606993139946, 33.104696111763, 131.954758427956, 38.5978898306375], 
-			'SRS' : 'EPSG:4326', // SRID
-			'FORMAT' : 'image/png' // 포맷
-		},
-		serverType : 'geoserver',
-	})
+   source : new ol.source.TileWMS({
+      url : 'http://210.113.102.169:8090/geoserver/EDU5/wms?service=WMS', // 1. 레이어 URL
+      params : {
+         'VERSION' : '1.1.0', // 2. 버전
+         'LAYERS' : 'EDU5:Protected_areas_jh', // 3. 작업공간:레이어 명
+         'BBOX' : [124.606993139946, 33.104696111763, 131.954758427956, 38.5978898306375], 
+         'SRS' : 'EPSG:4326', // SRID
+         'FORMAT' : 'image/png' // 포맷
+      },
+      serverType : 'geoserver',
+   })
 });
       
 // 시도 레이어 입력
  var sidoEdgeLayer = new ol.layer.Tile({
-	source : new ol.source.TileWMS({
-		url : 'http://210.113.102.169:8090/geoserver/EDU8/wms?service=WMS', // 1. 레이어 URL
-		params : {
-			'VERSION' : '1.1.0', // 2. 버전
-			'LAYERS' : 'EDU8:sido_edge_layer', // 3. 작업공간:레이어 명
-			'BBOX' : [746110.259983499, 1458754.04415633, 1387949.59274307, 2068443.95462902], 
-			'SRS' : 'EPSG:5179', // SRID
-			'FORMAT' : 'image/png' // 포맷
-		},
-		serverType : 'geoserver',
-	})
+   source : new ol.source.TileWMS({
+      url : 'http://210.113.102.169:8090/geoserver/EDU5/wms?service=WMS', // 1. 레이어 URL
+      params : {
+         'VERSION' : '1.1.0', // 2. 버전
+         'LAYERS' : 'EDU5:ctp_rvn_jh', // 3. 작업공간:레이어 명
+         'BBOX' : [746110.259983499, 1458754.04415633, 1387949.59274307, 2068443.95462902], 
+         'SRS' : 'EPSG:5179', // SRID
+         'FORMAT' : 'image/png' // 포맷
+      },
+      serverType : 'geoserver',
+   })
 });
    
 
@@ -125,8 +125,99 @@ function updateLayerByName(name) {
 map.addLayer(protectedAreaLayer);
 map.addLayer(sidoEdgeLayer);
 
+// 어장도 레이어 입력
+ var fishingGroundLayer = new ol.layer.Tile({
+   source : new ol.source.TileWMS({
+      url : 'http://210.113.102.169:8090/geoserver/EDU5/wms?service=WMS', // 1. 레이어 URL
+      params : {
+         'VERSION' : '1.1.0', // 2. 버전
+         'LAYERS' : 'EDU5:fishingGround_jh', // 3. 작업공간:레이어 명
+         'BBOX' : [128.09794, 34.85631667, 128.50822, 35.07274722], 
+         'SRS' : 'EPSG:4326', // SRID
+         'FORMAT' : 'image/png' // 포맷
+      },
+      serverType : 'geoserver',
+   })
+});
 
-  	
+// 실시간 관측도 레이어 입력
+ var observeLayer = new ol.layer.Tile({
+   source : new ol.source.TileWMS({
+      url : 'http://210.113.102.169:8090/geoserver/EDU5/wms?service=WMS', // 1. 레이어 URL
+      params : {
+         'VERSION' : '1.1.0', // 2. 버전
+         'LAYERS' : 'EDU5:observe_jh', // 3. 작업공간:레이어 명
+         'BBOX' : [124.7295, 33.1628, 129.8131, 38.2273], 
+         'SRS' : 'EPSG:4326', // SRID
+         'FORMAT' : 'image/png' // 포맷
+      },
+      serverType : 'geoserver',
+   })
+});
+// agency 값에 따라 아이콘을 반환하는 스타일 함수 정의
+function getFeatureStyle(feature) {
+  var agency = feature.get('agency');
+  var iconUrl;
+
+  // agency 값에 따라 다른 아이콘 URL 선택
+  switch (agency) {
+    case '국립수산과학원':
+      iconUrl = 'images/icon/nifs.png';
+      break;
+    case '기상청':
+      iconUrl = 'images/icon/kma.png';
+      break;
+    case '한수원':
+      iconUrl = 'images/icon/khnp.png';
+      break;
+    case '지자체':
+      iconUrl = 'images/icon/government.png';
+      break;
+    case '점검중':
+      iconUrl = 'images/icon/inspect.png';
+      break;
+    default:
+      iconUrl = 'images/icon/inspect.png';
+  }
+
+// 아이콘 스타일 생성
+  var iconStyle = new ol.style.Style({
+    image: new ol.style.Icon({
+      src: iconUrl,
+      size: [20, 20], // 아이콘 크기
+      anchor: [0.5, 0.5], // 아이콘 앵커 위치
+      scale: 1 // 아이콘 크기 비율
+    })
+  });
+
+  return iconStyle;
+}
+
+// 체크박스 요소 선택
+var fisheryManagementCheckbox = document.getElementById('fishery_management');
+var fisheryObservatoryCheckbox = document.getElementById('fishery_observatory');
+
+// 체크박스 상태 변경 이벤트 리스너 추가
+fisheryManagementCheckbox.addEventListener('change', function() {
+  if (fisheryManagementCheckbox.checked) {
+    // 체크박스가 체크되었을 때 어장도 레이어를 지도에 추가
+    map.addLayer(fishingGroundLayer);
+  } else {
+    // 체크박스가 체크 해제되었을 때 어장도 레이어를 지도에서 제거
+    map.removeLayer(fishingGroundLayer);
+  }
+});
+fisheryObservatoryCheckbox.addEventListener('change', function() {
+  if (fisheryObservatoryCheckbox.checked) {
+    // 체크박스가 체크되었을 때 실시간 관측도 레이어를 지도에 추가
+   map.addLayer(observeLayer);
+  } else {
+    // 체크박스가 체크 해제되었을 때 실시간 관측도 레이어를 지도에서 제거
+    map.removeLayer(observeLayer);
+  }
+});
+
+     
 //------------------------------------------------------------------------------------
 // 화면 줌인/ 아웃 버튼
 
@@ -168,13 +259,13 @@ let drawLayer = new ol.layer.Vector({
 
     var typeSelect = document.getElementById('type');
     var draw;
-    var polygonCoordinates = []; // 위치 정보를 저장할 배열
+    var polygonCoordinates = []; // 위치 정보를 저장할 배열 
 
     function resetMap() {
         map.removeInteraction(draw);
         drawLayer.getSource().clear();
         polygonCoordinates = []; // 저장된 위치 정보 초기화
-		addInteraction(); // 폴리곤 그리기 기능 다시 추가
+      addInteraction(); // 폴리곤 그리기 기능 다시 추가
     }
 
     function addInteraction() {
@@ -200,7 +291,7 @@ let drawLayer = new ol.layer.Vector({
                     return ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326');
                 });
 
-				// 꼭지점이 6개 초과인 경우에 알람 띄우기
+            // 꼭지점이 6개 초과인 경우에 알람 띄우기
                 if (polygonCoordinates.length > 6) {
                     alert("삼각형, 사각형 또는 오각형 모양으로 그려주세요");
                     setTimeout(resetMap, 0); // 비동기적으로 resetMap() 함수 실행
@@ -208,8 +299,8 @@ let drawLayer = new ol.layer.Vector({
 
                 // 필요한 경우 저장된 위치 정보를 활용할 수 있습니다.
                 console.log(polygonCoordinates);
- 				// 모달 창 열기
- 				openCustomModal(polygonCoordinates);
+             // 모달 창 열기
+             openCustomModal(polygonCoordinates);
             });
 
             map.addInteraction(draw);
@@ -244,16 +335,16 @@ $.ajax({
     }
     
     var source = new ol.source.Vector({
-		features: features
-	});
-	
-	var cluster = new ol.source.Cluster({
-		distance: parseInt(distance.value, 10),
-		source: source
-	});
-	
-	var styleCache = {};
-	var clusterLayer = new ol.layer.Vector({
+      features: features
+   });
+   
+   var cluster = new ol.source.Cluster({
+      distance: parseInt(distance.value, 10),
+      source: source
+   });
+   
+   var styleCache = {};
+   var clusterLayer = new ol.layer.Vector({
     source: cluster,
     style: function(feature) {
       var size = feature.get('features').length;
@@ -287,6 +378,11 @@ $.ajax({
 }).fail(function(error) {
     console.log(JSON.stringify(error.responseText));
 });
-	
+   
     
 */
+
+
+
+
+

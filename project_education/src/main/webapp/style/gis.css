@@ -95,10 +95,9 @@
 
 .gis-map-btn ul li .info-inner .inputWrap {position:relative;}
 .gis-map-btn ul li .info-inner .inputWrap + .inputWrap {margin-top:10px;}
-.gis-map-btn ul li .info-inner .inputWrap input {display:none;}
+.gis-map-btn ul li .info-inner .inputWrap input[type="checkbox"] {width: 16px; height: 16px; border: 1px solid var(--blueGray); border-radius: 2px; position: absolute; left: 0; top: 5px; content: ''; display: block; }
+.gis-map-btn ul li .info-inner .inputWrap input[type="checkbox"]:checked+label {background: url(/images/gis/i-check.svg) center no-repeat;}
 .gis-map-btn ul li .info-inner .inputWrap label {padding-left:20px; position:relative; cursor:pointer;}
-.gis-map-btn ul li .info-inner .inputWrap label:before {width:16px; height:16px; border:1px solid var(--blueGray); border-radius:2px; position:absolute; left:0; top:2px; content:''; display:block;}
-.gis-map-btn ul li .info-inner .inputWrap input:checked+label:before {background:url(/images/gis/i-check.svg)center no-repeat;}
 .gis-map-btn ul li .info-inner .inputWrap a {width:20px; height:20px; position:absolute ;right:0; top:0; display:block; text-align:center;}
 .gis-map-btn ul li .info-inner .inputWrap a img {width:50%; height:100%; object-fit:contain;}
 
@@ -122,8 +121,8 @@
 .modal-item-top h1 {font-size:18px; font-weight:700;}
 .modal-item-top h1 .date {color:var(--blueGray); font-size:11px; font-weight:400;}
 .modal-item-top .btn-close {
-	background:url(/images/gis/i-x.png) center no-repeat;
-	position:absolute; right:15px; top:15px;
+   background:url(/images/gis/i-x.png) center no-repeat;
+   position:absolute; right:15px; top:15px;
 }
 /* .modal-item .tabInner .flexBox {width:100%;} */
 .modal-item .tabInner>div {border:2px solid var(--blue);}
@@ -136,9 +135,9 @@
 .totalWrap .total-item p {padding-left:170px; }
 
 @media screen and (max-width: 1200px) {
-	.gis-map {}
-	.gis-map img {width:100%; height:100%; object-fit:cover;}
-	.gis-list-table {max-height:calc(100% - 120px);}
+   .gis-map {}
+   .gis-map img {width:100%; height:100%; object-fit:cover;}
+   .gis-list-table {max-height:calc(100% - 120px);}
 }
 
 #real_time_inform {border:2px solid var(--blue); background:white; padding:10px; border-radius:5px; width:300px;}
