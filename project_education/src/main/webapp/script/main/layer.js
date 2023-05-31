@@ -47,6 +47,104 @@ let Satellite = new ol.layer.Tile({
     })
   });
 
+
+//------------------------------------------------------------------------------------
+  
+// 레이어 변경 기능
+
+//일반지도 클릭 이벤트 핸들러
+document.getElementById('vworld-base').addEventListener('click', function() {
+  updateLayerByName('Base');
+});
+
+// 회색지도 클릭 이벤트 핸들러
+document.getElementById('vworld-gray').addEventListener('click', function() {
+  updateLayerByName('white');
+});
+
+ // 위성지도 클릭 이벤트 핸들러
+document.getElementById('vworld-satbrid').addEventListener('click', function() {
+  updateLayerByName('Satellite');
+});
+
+// 하이브리드 클릭 이벤트 핸들러
+document.getElementById('vworld-sathybrid').addEventListener('click', function() {
+  updateLayerByName('Hybrid');
+});
+
+
+// 레이어 업데이트
+function updateLayerByName(name) {
+  var layers = map.getLayers();
+  for (var i = 0, len = layers.getLength(); i < len; i++) {
+    var layer = layers.item(i);
+    if (layer.get('name') === name) {
+      layers.remove(layer);
+      layers.insertAt(3, layer);
+      break;
+    }
+  }
+}
+  
+
+//------------------------------------------------------------------------------------
+// 기타 레이어
+
+// 보호구역 레이어 입력
+ var protectedAreaLayer = new ol.layer.Tile({
+	source : new ol.source.TileWMS({
+		url : 'http://210.113.102.169:8090/geoserver/EDU8/wms?service=WMS', // 1. 레이어 URL
+		params : {
+			'VERSION' : '1.1.0', // 2. 버전
+			'LAYERS' : 'EDU8:protected_area_layer', // 3. 작업공간:레이어 명
+			'BBOX' : [124.606993139946, 33.104696111763, 131.954758427956, 38.5978898306375], 
+			'SRS' : 'EPSG:4326', // SRID
+			'FORMAT' : 'image/png' // 포맷
+		},
+		serverType : 'geoserver',
+	})
+});
+      
+// 시도 레이어 입력
+ var sidoEdgeLayer = new ol.layer.Tile({
+	source : new ol.source.TileWMS({
+		url : 'http://210.113.102.169:8090/geoserver/EDU8/wms?service=WMS', // 1. 레이어 URL
+		params : {
+			'VERSION' : '1.1.0', // 2. 버전
+			'LAYERS' : 'EDU8:sido_edge_layer', // 3. 작업공간:레이어 명
+			'BBOX' : [746110.259983499, 1458754.04415633, 1387949.59274307, 2068443.95462902], 
+			'SRS' : 'EPSG:5179', // SRID
+			'FORMAT' : 'image/png' // 포맷
+		},
+		serverType : 'geoserver',
+	})
+});
+   
+
+// 레이어 입력    
+map.addLayer(protectedAreaLayer);
+map.addLayer(sidoEdgeLayer);
+
+
+  	
+//------------------------------------------------------------------------------------
+// 화면 줌인/ 아웃 버튼
+
+document.getElementById('zoom-out').onclick = function() {
+   var view = map.getView();
+   var zoom = view.getZoom();
+   view.setZoom(zoom - 1);
+ };
+   
+document.getElementById('zoom-in').onclick = function() {
+   var view = map.getView();
+   var zoom = view.getZoom();
+   view.setZoom(zoom + 1);
+}
+
+//------------------------------------------------------------------------------------
+// 폴리곤 관련 
+
 let drawLayer = new ol.layer.Vector({
         source: new ol.source.Vector(),
         style: new ol.style.Style({
@@ -127,143 +225,11 @@ let drawLayer = new ol.layer.Vector({
         addInteraction();
     };
       
-//------------------------------------------------------------------------------------
-  
-// 레이어 변경 기능
-
-//일반지도 클릭 이벤트 핸들러
-document.getElementById('vworld-base').addEventListener('click', function() {
-  updateLayerByName('Base');
-});
-
-// 회색지도 클릭 이벤트 핸들러
-document.getElementById('vworld-gray').addEventListener('click', function() {
-  updateLayerByName('white');
-});
-
- // 위성지도 클릭 이벤트 핸들러
-document.getElementById('vworld-satbrid').addEventListener('click', function() {
-  updateLayerByName('Satellite');
-});
-
-// 하이브리드 클릭 이벤트 핸들러
-document.getElementById('vworld-sathybrid').addEventListener('click', function() {
-  updateLayerByName('Hybrid');
-});
-
-
-// 레이어 업데이트
-function updateLayerByName(name) {
-  var layers = map.getLayers();
-  for (var i = 0, len = layers.getLength(); i < len; i++) {
-    var layer = layers.item(i);
-    if (layer.get('name') === name) {
-      layers.remove(layer);
-      layers.insertAt(3, layer);
-      break;
-    }
-  }
-}
-  
-
-//------------------------------------------------------------------------------------
-// 기타 레이어
-
-// 보호구역 레이어 입력
- var protectedAreaLayer = new ol.layer.Tile({
-	source : new ol.source.TileWMS({
-		url : 'http://210.113.102.169:8090/geoserver/EDU8/wms?service=WMS', // 1. 레이어 URL
-		params : {
-			'VERSION' : '1.1.0', // 2. 버전
-			'LAYERS' : 'EDU8:protected_area_layer', // 3. 작업공간:레이어 명
-			'BBOX' : [124.606993139946, 33.104696111763, 131.954758427956, 38.5978898306375], 
-			'SRS' : 'EPSG:4326', // SRID
-			'FORMAT' : 'image/png' // 포맷
-		},
-		serverType : 'geoserver',
-	})
-});
-      
-// 시도 레이어 입력
- var sidoEdgeLayer = new ol.layer.Tile({
-	source : new ol.source.TileWMS({
-		url : 'http://210.113.102.169:8090/geoserver/EDU8/wms?service=WMS', // 1. 레이어 URL
-		params : {
-			'VERSION' : '1.1.0', // 2. 버전
-			'LAYERS' : 'EDU8:sido_edge_layer', // 3. 작업공간:레이어 명
-			'BBOX' : [746110.259983499, 1458754.04415633, 1387949.59274307, 2068443.95462902], 
-			'SRS' : 'EPSG:5179', // SRID
-			'FORMAT' : 'image/png' // 포맷
-		},
-		serverType : 'geoserver',
-	})
-});
-   
-// rnd 레이어 입력
-/*
-var RnDLayer = new ol.layer.Tile({
-	source : new ol.source.TileWMS({
-		url : 'http://210.113.102.169:8090/geoserver/EDU8/wms?service=WMS', // 1. 레이어 URL
-		params : {
-			'VERSION' : '1.1.0', // 2. 버전
-			'LAYERS' : 'EDU8:rnd_layer', // 3. 작업공간:레이어 명
-			'BBOX' : [125.9519444, 33.44944, 126.2525, 34.95333333], 
-			'SRS' : 'EPSG:4326', // SRID
-			'FORMAT' : 'image/png' // 포맷
-		},
-		serverType : 'geoserver',
-	})
-});
-*/
-
-// 레이어 입력    
-map.addLayer(protectedAreaLayer);
-map.addLayer(sidoEdgeLayer);
-//map.addLayer(RnDLayer);
-
-
-
-
-  	
-//------------------------------------------------------------------------------------
-// rnd 레이어 클릭시 정보받기. info라는 id를 가진 div가 있어야 함
-// 현재 iframe 이 same origin 정책으로 막혀있음
-/* 
- map.on('singleclick', function (evt) {
-	    document.getElementById('info').innerHTML = '';
-	    
-	    var viewResolution = map.getView().getResolution();
-	    var url = RnDLayer.getSource().getGetFeatureInfoUrl(
-	        evt.coordinate, viewResolution, 'EPSG:4326',
-	        { 'INFO_FORMAT': 'text/html' }
-	    );
-	    
-	    if (url) {
-	        document.getElementById('info').innerHTML =
-	            '<iframe width="100%" seamless="" src="' + url + '"></iframe>';
-	    }
-});
-*/   
-  
-//------------------------------------------------------------------------------------
-// 화면 줌인/ 아웃 버튼
-
-document.getElementById('zoom-out').onclick = function() {
-   var view = map.getView();
-   var zoom = view.getZoom();
-   view.setZoom(zoom - 1);
- };
-   
-document.getElementById('zoom-in').onclick = function() {
-   var view = map.getView();
-   var zoom = view.getZoom();
-   view.setZoom(zoom + 1);
-}
 
 //------------------------------------------------------------------------------------
  /*
-// 클러스터 데이터 요청 wfs 사용하지 않는 버전
-// 현재 사용하지 않음
+// 클러스터 데이터 요청(cors 보안이슈로 인한 wfs 사용하지 않는 버전)
+// 2023-05-30 조경민 : 보안이슈 해결로 현재 사용하지 않음
 
 $.ajax({
     url: '/project_education/main/cluster-coordinates.do',
