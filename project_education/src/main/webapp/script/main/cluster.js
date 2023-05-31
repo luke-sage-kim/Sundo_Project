@@ -176,7 +176,8 @@ function clusterLayerUpdate(){
 //------------------------------------------------------------------------------------
 // 클러스터 간격 조절 기능 
 distance.addEventListener('input', function() {
-	cluster.setDistance(parseInt(distance.value, 10));
+	marineClusterLayer.getSource().setDistance(parseInt(distance.value, 10));
+	rndClusterLayer.getSource().setDistance(parseInt(distance.value, 10));
 });
 
 //------------------------------------------------------------------------------------

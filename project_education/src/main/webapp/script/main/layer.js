@@ -140,59 +140,6 @@ map.addLayer(sidoEdgeLayer);
    })
 });
 
-// 실시간 관측도 레이어 입력
- var observeLayer = new ol.layer.Tile({
-   source : new ol.source.TileWMS({
-      url : 'http://210.113.102.169:8090/geoserver/EDU5/wms?service=WMS', // 1. 레이어 URL
-      params : {
-         'VERSION' : '1.1.0', // 2. 버전
-         'LAYERS' : 'EDU5:observe_jh', // 3. 작업공간:레이어 명
-         'BBOX' : [124.7295, 33.1628, 129.8131, 38.2273], 
-         'SRS' : 'EPSG:4326', // SRID
-         'FORMAT' : 'image/png' // 포맷
-      },
-      serverType : 'geoserver',
-   })
-});
-// agency 값에 따라 아이콘을 반환하는 스타일 함수 정의
-function getFeatureStyle(feature) {
-  var agency = feature.get('agency');
-  var iconUrl;
-
-  // agency 값에 따라 다른 아이콘 URL 선택
-  switch (agency) {
-    case '국립수산과학원':
-      iconUrl = 'images/icon/nifs.png';
-      break;
-    case '기상청':
-      iconUrl = 'images/icon/kma.png';
-      break;
-    case '한수원':
-      iconUrl = 'images/icon/khnp.png';
-      break;
-    case '지자체':
-      iconUrl = 'images/icon/government.png';
-      break;
-    case '점검중':
-      iconUrl = 'images/icon/inspect.png';
-      break;
-    default:
-      iconUrl = 'images/icon/inspect.png';
-  }
-
-// 아이콘 스타일 생성
-  var iconStyle = new ol.style.Style({
-    image: new ol.style.Icon({
-      src: iconUrl,
-      size: [20, 20], // 아이콘 크기
-      anchor: [0.5, 0.5], // 아이콘 앵커 위치
-      scale: 1 // 아이콘 크기 비율
-    })
-  });
-
-  return iconStyle;
-}
-
 // 체크박스 요소 선택
 var fisheryManagementCheckbox = document.getElementById('fishery_management');
 var fisheryObservatoryCheckbox = document.getElementById('fishery_observatory');
@@ -201,6 +148,7 @@ var fisheryObservatoryCheckbox = document.getElementById('fishery_observatory');
 fisheryManagementCheckbox.addEventListener('change', function() {
   if (fisheryManagementCheckbox.checked) {
     // 체크박스가 체크되었을 때 어장도 레이어를 지도에 추가
+
     map.addLayer(fishingGroundLayer);
   } else {
     // 체크박스가 체크 해제되었을 때 어장도 레이어를 지도에서 제거
@@ -210,10 +158,60 @@ fisheryManagementCheckbox.addEventListener('change', function() {
 fisheryObservatoryCheckbox.addEventListener('change', function() {
   if (fisheryObservatoryCheckbox.checked) {
     // 체크박스가 체크되었을 때 실시간 관측도 레이어를 지도에 추가
-   map.addLayer(observeLayer);
+   map.addLayer(wfsLayer);
   } else {
     // 체크박스가 체크 해제되었을 때 실시간 관측도 레이어를 지도에서 제거
-    map.removeLayer(observeLayer);
+    map.removeLayer(wfsLayer);
+  }
+});
+
+// WFS 소스 생성
+var wfsSource = new ol.source.Vector({
+  format: new ol.format.GeoJSON(),
+  url: 'http://210.113.102.169:8090/geoserver/EDU5/wfs?service=WFS&' +
+    'version=1.1.0&request=GetFeature&typeName=EDU5:observe_jh&' +
+    'outputFormat=application/json&srsname=EPSG:4326'
+});
+
+// WFS 레이어 생성
+var wfsLayer = new ol.layer.Vector({
+  source: wfsSource,
+  style: function(feature) {
+    // feature에서 속성 값을 가져와 아이콘과 스타일을 다르게 구성
+    var agency = feature.get('agency');
+    var iconUrl;
+    // agency 값에 따라 다른 아이콘 URL 선택
+    switch (agency) {
+      case '국립수산과학원':
+        iconUrl = 'images/icon/nifs.png';
+        break;
+      case '기상청':
+        iconUrl = 'images/icon/kma.png';
+        break;
+      case '한수원':
+        iconUrl = 'images/icon/khnp.png';
+        break;
+      case '지자체':
+        iconUrl = 'images/icon/government.png';
+        break;
+      case '점검중':
+        iconUrl = 'images/icon/inspect.png';
+        break;
+      default:
+        iconUrl = 'images/icon/inspect.png';
+    }
+
+    // 아이콘 스타일 생성
+    var iconStyle = new ol.style.Style({
+      image: new ol.style.Icon({
+        src: iconUrl,
+        size: [40, 40], // 아이콘 크기
+        anchor: [0.5, 0.5], // 아이콘 앵커 위치
+        scale: 0.5 // 아이콘 크기 비율
+      })
+    });
+
+    return iconStyle;
   }
 });
 
