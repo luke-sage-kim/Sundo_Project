@@ -110,6 +110,8 @@ let drawLayer = new ol.layer.Vector({
 
                 // 필요한 경우 저장된 위치 정보를 활용할 수 있습니다.
                 console.log(polygonCoordinates);
+ 				// 모달 창 열기
+ 				openCustomModal(polygonCoordinates);
             });
 
             map.addInteraction(draw);

@@ -43,6 +43,41 @@
 	    transform: rotate(180deg);
 	} 
    </style>
+   
+   
+   <style type="text/css">
+   
+   .custom-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.custom-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+}
+
+.custom-close {
+  float: right;
+  cursor: pointer;
+}
+
+#coordinates-list {
+  margin-top: 10px;
+  padding: 0;
+}
+   
+   </style>
 </head>
  <script type="module" src="main.js"></script>
     <!-- OpenLayers 라이브러리 스타일시트 -->
@@ -194,7 +229,7 @@
 							</div>
 						</li>
 						
-					            <li class="draw">
+					  <li class="draw">
                       <a href="#void">그리기</a>
                       <div class="info">
                           <h4>그리기<button type="button" class="btn-close"></button></h4>
@@ -208,6 +243,7 @@
                           </form>
                       </div>
                   </li>
+                 		
                   
                   
                   
@@ -783,4 +819,31 @@
                      </script>
 		<script defer src="script/main/layer.js"></script>
       <script defer src="script/main/cluster.js"></script>
+      
+    <div id="custom-modal" class="custom-modal">
+	  <div class="custom-modal-content">
+	    <span class="custom-close" onclick="closeCustomModal()">&times;</span>
+	    <h3>폴리곤 영역 정보</h3>
+	    <ul id="coordinates-list"></ul>
+	  </div>
+	</div>
+	
+	<script type="text/javascript">
+	 function openCustomModal(coordinates) {
+		    var customModal = document.getElementById('custom-modal');
+		    var coordinatesList = document.getElementById('coordinates-list');
+		    customModal.style.display = "block";
+		    coordinatesList.innerHTML = '';
+		    coordinates.forEach(function(coordinate) {
+		      var listItem = document.createElement('li');
+		      listItem.textContent = "위도: " + coordinate[1] + ", 경도: " + coordinate[0];
+		      coordinatesList.appendChild(listItem);
+		    });
+		  }
+
+		  function closeCustomModal() {
+		    var customModal = document.getElementById('custom-modal');
+		    customModal.style.display = "none";
+		  }
+	</script>
 </body>
