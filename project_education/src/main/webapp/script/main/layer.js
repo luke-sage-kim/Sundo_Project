@@ -145,16 +145,29 @@ var fisheryManagementCheckbox = document.getElementById('fishery_management');
 var fisheryObservatoryCheckbox = document.getElementById('fishery_observatory');
 
 // 체크박스 상태 변경 이벤트 리스너 추가
-fisheryManagementCheckbox.addEventListener('change', function() {
-  if (fisheryManagementCheckbox.checked) {
-    // 체크박스가 체크되었을 때 어장도 레이어를 지도에 추가
+fisheryManagementCheckbox.addEventListener('change', toggleFisheryManagementLayer);
+var fisheryManagementLayer;
 
-    map.addLayer(fishingGroundLayer);
-  } else {
-    // 체크박스가 체크 해제되었을 때 어장도 레이어를 지도에서 제거
-    map.removeLayer(fishingGroundLayer);
-  }
-});
+// 면허어장도 레이어 표출/비표출 함수
+	function toggleFisheryManagementLayer() {
+	  if (fisheryManagementCheckbox.checked) {
+	    // WFS 소스 생성
+	    var fisheryManagementSource = new ol.source.Vector({
+	      format: new ol.format.GeoJSON(),
+	      url: 'http://210.113.102.169:8090/geoserver/EDU3/wfs?service=WFS&version=1.1.0&'
+				+'request=GetFeature&typeName=EDU3:LF_layer&outputFormat=application/json&srsname=EPSG:4326'
+	    });
+	    // 면허어장도 레이어 생성
+	    fisheryManagementLayer = new ol.layer.Vector({
+	      source: fisheryManagementSource
+	    });
+	    map.addLayer(fisheryManagementLayer);
+	  } else {
+	    map.removeLayer(fisheryManagementLayer);
+	  }
+	}
+
+
 fisheryObservatoryCheckbox.addEventListener('change', function() {
   if (fisheryObservatoryCheckbox.checked) {
     // 체크박스가 체크되었을 때 실시간 관측도 레이어를 지도에 추가
@@ -289,21 +302,68 @@ let drawLayer = new ol.layer.Vector({
                     return ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326');
                 });
 
-            // 꼭지점이 6개 초과인 경우에 알람 띄우기
+				// 꼭지점이 6개 초과인 경우에 알람 띄우기
                 if (polygonCoordinates.length > 6) {
                     alert("삼각형, 사각형 또는 오각형 모양으로 그려주세요");
                     setTimeout(resetMap, 0); // 비동기적으로 resetMap() 함수 실행
                 }
 
+				// 겹친 부분의 특정 속성만 가져오기
+				var intersectionFeatures = getIntersectionFeatures(feature);
+
                 // 필요한 경우 저장된 위치 정보를 활용할 수 있습니다.
                 console.log(polygonCoordinates);
-             // 모달 창 열기
-             openCustomModal(polygonCoordinates);
+				console.log(intersectionFeatures);
+				// 모달 창 열기
+				// openCustomModal(polygonCoordinates);
+				openCustomModal(intersectionFeatures);
             });
 
             map.addInteraction(draw);
         }
     }
+
+	// 겹친 좌표를 통해 면허어장도 레이어의 다른 정보 불러오기
+	function getIntersectionFeatures(polygonFeature) {
+		var intersectionFeatures = [];
+		var polygonGeometry = polygonFeature.getGeometry();
+		var fisheryFeatures = fisheryManagementLayer.getSource().getFeatures();
+		
+		fisheryFeatures.forEach(function (fisheryFeature) {
+			var fisheryGeometry = fisheryFeature.getGeometry();
+			var fisheryExtent = fisheryGeometry.getExtent();
+			
+			if (polygonGeometry.intersectsExtent(fisheryExtent)) {
+				var properties = fisheryFeature.getProperties();
+				var selectedProperties = {
+					license_nu: properties.license_nu,
+					fishery_space: properties.fishery_space
+				};
+				intersectionFeatures.push(selectedProperties);
+			}
+		});
+		return intersectionFeatures;
+	}
+	
+	function openCustomModal(features) {
+	    var customModal = document.getElementById('custom-modal');
+	    var contentList = document.getElementById('content-list');
+	    customModal.style.display = "block";
+	    contentList.innerHTML = '';
+
+	    features.forEach(function(feature) {
+			var listItem = document.createElement('li');
+			var licenseNu = feature.license_nu;
+			var fisherySpace = feature.fishery_space;
+			listItem.textContent = "어장도명: " + licenseNu + ", 면적: " + fisherySpace;
+			contentList.appendChild(listItem);
+	    });
+	}
+	
+	function closeCustomModal() {
+	    var customModal = document.getElementById('custom-modal');
+	    customModal.style.display = "none";
+	}
 
     function removeInteraction() {
         map.removeInteraction(draw);

@@ -783,7 +783,8 @@
      <div class="custom-modal-content">
        <span class="custom-close" onclick="closeCustomModal()">&times;</span>
        <h3>폴리곤 영역 정보</h3>
-       <ul id="coordinates-list"></ul>
+       <!-- <ul id="coordinates-list"></ul> -->
+       <ul id="content-list"></ul>
      </div>
    </div>
    
