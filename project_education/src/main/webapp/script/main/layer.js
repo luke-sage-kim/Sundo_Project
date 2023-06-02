@@ -262,7 +262,6 @@ map.on('pointermove', function(event) {
     // 팝업에 피처 정보를 표시
     var overlayElement = overlay.getElement();
     var observatory_nm = overlayElement.querySelector('#observatory_nm');
-    var observatory_date = overlayElement.querySelector('.date');
     var surface_class = overlayElement.querySelector('#surface_class');
     var middle_class = overlayElement.querySelector('#middle_class');
     var low_class = overlayElement.querySelector('#low_class');
