@@ -10,6 +10,7 @@
    <link type="text/css" href="style/main.css" rel="stylesheet">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 </head>
  <script type="module" src="main.js"></script>
     <!-- OpenLayers 라이브러리 스타일시트 -->
@@ -70,7 +71,8 @@
                                                                                                    <li>${list4.name}</li>
                                                                                                 </c:when>
                                                                                                 <c:otherwise>
-                                                                                                   <li><input type="checkbox" class="checkLayer" id="checkLayer${list4.id}">${list4.name}</li>
+                                                                                                     <input type="checkbox" class="checkLayer" id="checkLayer${list4.id}">
+  																									 ${list4.name}<br>
                                                                                                 </c:otherwise>
                                                                                              </c:choose>
                                                                                           </c:if>
@@ -79,16 +81,15 @@
                                                                                  </li>
                                                                               </c:when>
                                                                               <c:otherwise>
-                                                                                 <li><input type="checkbox" class="checkLayer" id="checkLayer${list3.id}">${list3.name}</li>
-                                                                              </c:otherwise>
-                                                                           </c:choose>
+                                                                                 <input type="checkbox" class="checkLayer" id="checkLayer${list3.id}">${list3.name}<br>                                                                              </c:otherwise>
+                                                                          	  </c:choose>
                                                                         </c:if>
                                                                      </c:forEach>
                                                                   </ul>
                                                                </li>
                                                             </c:when>
                                                             <c:otherwise>
-                                                               <li><input type="checkbox" class="checkLayer" id="checkLayer${list2.id}">${list2.name}</li>
+                                                               <input type="checkbox" class="checkLayer" id="checkLayer${list2.id}">${list2.name}<br> 
                                                             </c:otherwise>
                                                          </c:choose>
                                                       </c:if>
@@ -97,7 +98,7 @@
                                              </li>
                                           </c:when>
                                           <c:otherwise>
-                                             <li><input type="checkbox" class="checkLayer" id="checkLayer${list1.id}">${list1.name}</li>
+                                             <input type="checkbox" class="checkLayer" id="checkLayer${list1.id}">${list1.name}<br> 
                                           </c:otherwise>
                                        </c:choose>
                                     </c:if>
@@ -829,4 +830,6 @@
           customModal.style.display = "none";
         }
    </script>
+  
+
 </body>
