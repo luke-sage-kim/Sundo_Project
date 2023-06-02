@@ -38,7 +38,7 @@ public class LoginService extends BaseService {
 	 */
 	public Member doLogin(LoginDto loginDto) {
 		
-		ArrayList<Member> matchingId = new ArrayList<>();
+		ArrayList<Member> matchingId = new ArrayList<Member>();
 		
 		try {
 			matchingId = (ArrayList<Member>) dao.list("Login.findMatchingId",loginDto);

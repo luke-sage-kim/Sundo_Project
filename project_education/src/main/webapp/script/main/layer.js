@@ -256,7 +256,9 @@ map.on('pointermove', function(event) {
     // 가져온 피처들중 1번 피쳐 정보 가져오기 
     var firstFeature = features[0];
     var properties = firstFeature.getProperties();
-
+	
+	if(properties['observator'] != null){
+		
     // 팝업에 피처 정보를 표시
     var overlayElement = overlay.getElement();
     var observatory_nm = overlayElement.querySelector('#observatory_nm');
@@ -285,6 +287,7 @@ map.on('pointermove', function(event) {
     
     // 팝업을 클릭한 피처의 위치에 표시 
     overlay.setPosition(event.coordinate);
+	}
   }
 });
 

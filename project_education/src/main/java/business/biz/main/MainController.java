@@ -93,7 +93,7 @@ public class MainController extends BaseController {
 	@GetMapping("/main/cluster-coordinates")
 	@ResponseBody
 	public List<MainClusterResponseDto> getClusterCoordinates(){
-		List<MainClusterResponseDto> coordinatesList = new ArrayList<>();
+		List<MainClusterResponseDto> coordinatesList = new ArrayList<MainClusterResponseDto>();
 		
 		// 클러스터 데이터를 담아 리스트로 저장
 		coordinatesList = mainService.getCoordinatesList();
