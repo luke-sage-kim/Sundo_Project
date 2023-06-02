@@ -228,6 +228,67 @@ var wfsLayer = new ol.layer.Vector({
   }
 });
 
+
+//------------------------------------------------------------------------------------
+// 실시간 관측소 클릭시 이벤트 생성. 
+// 2023-06-01 조경민
+
+// Overlay 요소를 생성하여 feature 정보를 표시할 팝업을 추가
+var overlay = new ol.Overlay({
+  element: document.getElementById('real_time_inform'),
+  positioning: 'bottom-center',
+  stopEvent: false,
+  offset: [0, -10]
+});
+map.addOverlay(overlay);
+
+// 클릭 이벤트 핸들러
+map.on('pointermove', function(event) {
+  var pixel = event.pixel;
+
+  // 클릭한 좌표 주변의 피처 가져오기
+  var features = map.getFeaturesAtPixel(pixel);
+
+  // 팝업 닫기 
+  overlay.setPosition(undefined);
+
+  if (features && features.length > 0) {
+    // 가져온 피처들중 1번 피쳐 정보 가져오기 
+    var firstFeature = features[0];
+    var properties = firstFeature.getProperties();
+
+    // 팝업에 피처 정보를 표시
+    var overlayElement = overlay.getElement();
+    var observatory_nm = overlayElement.querySelector('#observatory_nm');
+    var observatory_date = overlayElement.querySelector('.date');
+    var surface_class = overlayElement.querySelector('#surface_class');
+    var middle_class = overlayElement.querySelector('#middle_class');
+    var low_class = overlayElement.querySelector('#low_class');
+    var temp = overlayElement.querySelector('#temp');
+    var salt = overlayElement.querySelector('#salt');
+    var oxygen = overlayElement.querySelector('#oxygen');
+    
+    // null 체크 함수 
+    function nullCheck(checkedElement){
+		return checkedElement != null ? checkedElement : '미설치';
+	}
+    
+    // 팝업창에 정보 입력
+    observatory_nm.innerHTML = nullCheck(properties['observator']).replace(/\(.*\)/g, '')+'<span class="date">'+ (properties['obsdtm'] != null ? properties['obsdtm'] : '자료없음' )+'</span>';
+    surface_class.innerText = nullCheck(properties['wtrtmp1']);
+    middle_class.innerText = nullCheck(properties['wtrtmp2']);
+    low_class.innerText = nullCheck(properties['wtrtmp3']);
+    temp.innerText = nullCheck(properties['low-class']);
+    salt.innerText = nullCheck(properties['cdt1']);
+    oxygen.innerText = nullCheck(properties['dox1']);
+    
+    
+    // 팝업을 클릭한 피처의 위치에 표시 
+    overlay.setPosition(event.coordinate);
+  }
+});
+
+
      
 //------------------------------------------------------------------------------------
 // 화면 줌인/ 아웃 버튼
