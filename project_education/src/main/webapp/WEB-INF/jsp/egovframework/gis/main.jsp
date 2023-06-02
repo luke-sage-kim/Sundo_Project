@@ -180,7 +180,7 @@
                   
                            <li class="draw">
                       <a href="#void" style="display: flex; align-items: center;">
-						  <img src="images/gis/draw.PNG" style="width: 17px; margin-right: 5px; margin-bottom: 48px; margin-left: 18px;">
+						  <img src="images/gis/pen.png" style="width: 17px; margin-right: 5px; margin-bottom: 48px; margin-left: 18px;">
 						  <span style="margin-left: -28px; margin-bottom: 10px;">그리기</span>
                       </a>
                       <div class="info">
