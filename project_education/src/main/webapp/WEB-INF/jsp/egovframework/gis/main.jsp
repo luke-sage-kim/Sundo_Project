@@ -27,9 +27,13 @@
                
                <!-- 리스트 -->
                <div class="gis-list depItem">
-                  <div class="gis-list-tit"><p style="display: inline-block;">검색</p>
-                      <input id="search-input" type="text" style="display: inline-block;margin-left: 10px;margin-top: -3px;">
-                  </div>
+				  <div class="gis-list-tit" style="position: relative;">
+					  <img src="images/gis/i-search.svg" style="position: absolute; right: 91%; top: 40%; transform: translateY(-50%);">
+					  <p style="display: inline-block;">검색</p>
+					  <input id="search-input" type="text" style="display: inline-block;margin-left: 10px;margin-top: -3px;">
+				  </div>
+				  
+                  
                   <div>
                      <form>
                            <label id="clusterDistance">cluster distance</label>
@@ -111,7 +115,11 @@
          <div class="gis-map" id="gis_map">
             <div class="gis-map-btn">
                <ul class="gis-map-btn-option">
-                  <li class="map"><a href="#void">배경지도</a>
+                  <li class="map">
+                  <a href="#void" style="display: flex; align-items: center;">
+						  <img src="images/gis/i-map.svg" style="width: 20px; margin-right: 5px; margin-bottom: 48px; margin-left: 15px;">
+						  <span style="margin-left: -32px; margin-bottom: 10px;">배경지도</span>
+                      </a>
                      <div class="info">
                         <div class="info-find">
                            <a id="vworld-base" class="on" href="#void"><img src="images/basemap/vworld-base-thumb.png" alt="" />일반지도</a>
@@ -122,7 +130,10 @@
                      </div>
                   </li>
                   
-                  <li class="layer"><a href="#void">레이어</a>
+                  <li class="layer"><a href="#void" style="display: flex; align-items: center;">
+						  <img src="images/gis/i-layer.svg" style="width: 23px; margin-right: 5px; margin-bottom: 48px; margin-left: 14px;">
+						  <span style="margin-left: -30px; margin-bottom: 10px;">레이어</span>
+                      </a>
                      <div class="info">
                        <h4>레이어<button type="button" class="btn-close"></button></h4>
                        <div class="info-inner">
@@ -137,7 +148,11 @@
                        </div>
                      </div>
                   </li>
-                  <li class="legend"><a href="#void">범례</a>
+                  <li class="legend">
+                  <a href="#void" style="display: flex; align-items: center;">
+						  <img src="images/gis/i-legend.svg" style="width: 19px; margin-right: 5px; margin-bottom: 48px; margin-left: 16px;">
+						  <span style="margin-left: -24px; margin-bottom: 10px;">범례</span>
+                      </a>
                      <div class="info">
                         <h4>범례<button type="button" class="btn-close"></button></h4>
                         <div class="info-inner">
@@ -163,7 +178,10 @@
                   </li>
                   
                            <li class="draw">
-                      <a href="#void">그리기</a>
+                      <a href="#void" style="display: flex; align-items: center;">
+						  <img src="images/gis/draw.PNG" style="width: 17px; margin-right: 5px; margin-bottom: 48px; margin-left: 18px;">
+						  <span style="margin-left: -28px; margin-bottom: 10px;">그리기</span>
+                      </a>
                       <div class="info">
                           <h4>그리기<button type="button" class="btn-close"></button></h4>
                           <form>
@@ -176,15 +194,20 @@
                           </form>
                       </div>
                   </li>
-                  
-                  <li class="help">
-                  <a href="#void">도움말</a>  
-                  </li>   
+                     
                   
                </ul>
                <ul class="gis-map-btn-click">
-                  <li class="plus" id="zoom-in"><a href="#void"><img src="images/gis/i-plus.svg" style="width: 20px; margin-right: 10px;">확대</a></li>
-                        <li class="minus" id="zoom-out"><a href="#void"> <img src="images/gis/i-minus.svg" style="width: 20px; margin-right: 10px;">축소</a></li>
+                  <li class="plus" id="zoom-in">
+					  <a href="#void" style="display: flex; justify-content: center; align-items: center;">
+					    <img src="images/gis/i-plus.svg" style="width: 20px;">
+					  </a>
+				  </li>
+				  <li class="minus" id="zoom-out">
+					  <a href="#void" style="display: flex; justify-content: center; align-items: center;">
+					    <img src="images/gis/i-minus.svg" style="width: 20px;">
+					  </a>
+				  </li>
                </ul>
             </div>
             
