@@ -191,7 +191,7 @@ var selectClusterLayer = new ol.interaction.Select({
 
 map.addInteraction(selectClusterLayer);
 
-selectClusterLayer.on('select', function (evt) {
+map.on('singleClick', function (evt) {
 	    document.getElementById('map-info').innerHTML = '';
 	    
 	    var viewResolution = map.getView().getResolution();
