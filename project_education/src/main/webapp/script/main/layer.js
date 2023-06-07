@@ -246,48 +246,55 @@ map.addOverlay(overlay);
 map.on('pointermove', function(event) {
   var pixel = event.pixel;
 
-  // 클릭한 좌표 주변의 피처 가져오기
-  var features = map.getFeaturesAtPixel(pixel);
+  // 폴리곤 그리기 기능이 실행 중인지 확인
+  var isDrawing = map.getInteractions().getArray().some(function(interaction) {
+    return interaction instanceof ol.interaction.Draw;
+  });
 
-  // 팝업 닫기 
+  // 팝업 닫기
   overlay.setPosition(undefined);
 
-  if (features && features.length > 0) {
-    // 가져온 피처들중 1번 피쳐 정보 가져오기 
-    var firstFeature = features[0];
-    var properties = firstFeature.getProperties();
 
-    // 팝업에 피처 정보를 표시
-    var overlayElement = overlay.getElement();
-    var observatory_nm = overlayElement.querySelector('#observatory_nm');
-    var observatory_date = overlayElement.querySelector('.date');
-    var surface_class = overlayElement.querySelector('#surface_class');
-    var middle_class = overlayElement.querySelector('#middle_class');
-    var low_class = overlayElement.querySelector('#low_class');
-    var temp = overlayElement.querySelector('#temp');
-    var salt = overlayElement.querySelector('#salt');
-    var oxygen = overlayElement.querySelector('#oxygen');
-    
-    // null 체크 함수 
-    function nullCheck(checkedElement){
-		return checkedElement != null ? checkedElement : '미설치';
-	}
-    
-    // 팝업창에 정보 입력
-    observatory_nm.innerHTML = nullCheck(properties['observator']).replace(/\(.*\)/g, '')+'<span class="date">'+ (properties['obsdtm'] != null ? properties['obsdtm'] : '자료없음' )+'</span>';
-    surface_class.innerText = nullCheck(properties['wtrtmp1']);
-    middle_class.innerText = nullCheck(properties['wtrtmp2']);
-    low_class.innerText = nullCheck(properties['wtrtmp3']);
-    temp.innerText = nullCheck(properties['low-class']);
-    salt.innerText = nullCheck(properties['cdt1']);
-    oxygen.innerText = nullCheck(properties['dox1']);
-    
-    
-    // 팝업을 클릭한 피처의 위치에 표시 
-    overlay.setPosition(event.coordinate);
+  if (!isDrawing) {				//폴리곤이 켜지지않는경우
+    // 팝업 표시 기능 활성화
+    var features = map.getFeaturesAtPixel(pixel);
+
+    if (features && features.length > 0) {
+      // 가져온 피처들중 1번 피쳐 정보 가져오기 
+      var firstFeature = features[0];
+      var properties = firstFeature.getProperties();
+	//if(properties['observator'] != null){
+		// 팝업에 피처 정보를 표시
+      var overlayElement = overlay.getElement();
+      var observatory_nm = overlayElement.querySelector('#observatory_nm');
+      var observatory_date = overlayElement.querySelector('.date');
+      var surface_class = overlayElement.querySelector('#surface_class');
+      var middle_class = overlayElement.querySelector('#middle_class');
+      var low_class = overlayElement.querySelector('#low_class');
+      var temp = overlayElement.querySelector('#temp');
+      var salt = overlayElement.querySelector('#salt');
+      var oxygen = overlayElement.querySelector('#oxygen');
+
+      // null 체크 함수 
+      function nullCheck(checkedElement){
+        return checkedElement != null ? checkedElement : '미설치';
+      }
+
+      // 팝업창에 정보 입력
+      observatory_nm.innerHTML = nullCheck(properties['observator']).replace(/\(.*\)/g, '')+'<span class="date">'+ (properties['obsdtm'] != null ? properties['obsdtm'] : '자료없음' )+'</span>';
+      surface_class.innerText = nullCheck(properties['wtrtmp1']);
+      middle_class.innerText = nullCheck(properties['wtrtmp2']);
+      low_class.innerText = nullCheck(properties['wtrtmp3']);
+      temp.innerText = nullCheck(properties['low-class']);
+      salt.innerText = nullCheck(properties['cdt1']);
+      oxygen.innerText = nullCheck(properties['dox1']);
+
+      // 팝업을 클릭한 피처의 위치에 표시 
+      overlay.setPosition(event.coordinate);
+		//}
+    }
   }
 });
-
 
      
 //------------------------------------------------------------------------------------
@@ -309,131 +316,131 @@ document.getElementById('zoom-in').onclick = function() {
 // 폴리곤 관련 
 
 let drawLayer = new ol.layer.Vector({
-        source: new ol.source.Vector(),
-        style: new ol.style.Style({
-            fill: new ol.style.Fill({
-                color: 'rgba(255, 255, 255, 0.2)'
-            }),
-            stroke: new ol.style.Stroke({
-                color: '#ffcc33',
-                width: 2
-            }),
-            image: new ol.style.Circle({
-                radius: 7,
-                fill: new ol.style.Fill({
-                    color: '#ffcc33'
-                })
-            })
-        })
+  source: new ol.source.Vector(),
+  style: new ol.style.Style({
+    fill: new ol.style.Fill({
+      color: 'rgba(255, 255, 255, 0.2)'
+    }),
+    stroke: new ol.style.Stroke({
+      color: '#ffcc33',
+      width: 2
+    }),
+    image: new ol.style.Circle({
+      radius: 7,
+      fill: new ol.style.Fill({
+        color: '#ffcc33'
+      })
+    })
+  })
+});
+
+map.addLayer(drawLayer);
+
+var typeSelect = document.getElementById('type');
+var draw;
+var polygonCoordinates = []; // 위치 정보를 저장할 배열 
+
+function resetMap() {
+  map.removeInteraction(draw);
+  drawLayer.getSource().clear();
+  polygonCoordinates = []; // 저장된 위치 정보 초기화
+  addInteraction(); // 폴리곤 그리기 기능 다시 추가
+}
+
+function addInteraction() {
+  var type = typeSelect.value;
+  if (type !== 'None') {
+    draw = new ol.interaction.Draw({
+      source: drawLayer.getSource(),
+      type: type
     });
 
-    map.addLayer(drawLayer);
+    draw.on('drawend', function (event) {
+      var feature = event.feature;
+      var geometry = feature.getGeometry();
+      var coordinates = geometry.getCoordinates();
 
-    var typeSelect = document.getElementById('type');
-    var draw;
-    var polygonCoordinates = []; // 위치 정보를 저장할 배열 
+      // 다중 폴리곤을 그릴 때는 coordinates 배열이 2차원 배열일 수 있으므로 flatten 처리
+      if (type === 'Polygon') {
+        coordinates = coordinates[0];
+      }
 
-    function resetMap() {
-        map.removeInteraction(draw);
-        drawLayer.getSource().clear();
-        polygonCoordinates = []; // 저장된 위치 정보 초기화
-      addInteraction(); // 폴리곤 그리기 기능 다시 추가
+      // 위치 정보(위도, 경도)를 저장
+      polygonCoordinates = coordinates.map(function(coordinate) {
+        return ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326');
+      });
+
+      // 꼭지점이 6개 초과인 경우에 알람 띄우기
+      if (polygonCoordinates.length > 6) {
+        alert("삼각형, 사각형 또는 오각형 모양으로 그려주세요");
+        setTimeout(resetMap, 0); // 비동기적으로 resetMap() 함수 실행
+      }
+
+      // 겹친 부분의 특정 속성만 가져오기
+      var intersectionFeatures = getIntersectionFeatures(feature);
+
+      // 필요한 경우 저장된 위치 정보를 활용할 수 있습니다.
+      console.log(polygonCoordinates);
+      console.log(intersectionFeatures);
+      // 모달 창 열기
+      // openCustomModal(polygonCoordinates);
+      openCustomModal(intersectionFeatures);
+    });
+
+    map.addInteraction(draw);
+  }
+}
+
+// 겹친 좌표를 통해 면허어장도 레이어의 다른 정보 불러오기
+function getIntersectionFeatures(polygonFeature) {
+  var intersectionFeatures = [];
+  var polygonGeometry = polygonFeature.getGeometry();
+  var fisheryFeatures = fisheryManagementLayer.getSource().getFeatures();
+
+  fisheryFeatures.forEach(function (fisheryFeature) {
+    var fisheryGeometry = fisheryFeature.getGeometry();
+    var fisheryExtent = fisheryGeometry.getExtent();
+
+    if (polygonGeometry.intersectsExtent(fisheryExtent)) {
+      var properties = fisheryFeature.getProperties();
+      var selectedProperties = {
+        license_nu: properties.license_nu,
+        fishery_space: properties.fishery_space
+      };
+      intersectionFeatures.push(selectedProperties);
     }
+  });
+  return intersectionFeatures;
+}
 
-    function addInteraction() {
-        var type = typeSelect.value;
-        if (type !== 'None') {
-            draw = new ol.interaction.Draw({
-                source: drawLayer.getSource(),
-                type: type
-            });
+function openCustomModal(features) {
+  var customModal = document.getElementById('custom-modal');
+  var contentList = document.getElementById('content-list');
+  customModal.style.display = "block";
+  contentList.innerHTML = '';
 
-            draw.on('drawend', function (event) {
-                var feature = event.feature;
-                var geometry = feature.getGeometry();
-                var coordinates = geometry.getCoordinates();
+  features.forEach(function(feature) {
+    var listItem = document.createElement('li');
+    var licenseNu = feature.license_nu;
+    var fisherySpace = feature.fishery_space;
+    listItem.textContent = "어장도명: " + licenseNu + ", 면적: " + fisherySpace;
+    contentList.appendChild(listItem);
+  });
+}
 
-                // 다중 폴리곤을 그릴 때는 coordinates 배열이 2차원 배열일 수 있으므로 flatten 처리
-                if (type === 'Polygon') {
-                    coordinates = coordinates[0];
-                }
+function closeCustomModal() {
+  var customModal = document.getElementById('custom-modal');
+  customModal.style.display = "none";
+}
 
-                // 위치 정보(위도, 경도)를 저장
-                polygonCoordinates = coordinates.map(function(coordinate) {
-                    return ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326');
-                });
+function removeInteraction() {
+  map.removeInteraction(draw);
+}
 
-				// 꼭지점이 6개 초과인 경우에 알람 띄우기
-                if (polygonCoordinates.length > 6) {
-                    alert("삼각형, 사각형 또는 오각형 모양으로 그려주세요");
-                    setTimeout(resetMap, 0); // 비동기적으로 resetMap() 함수 실행
-                }
-
-				// 겹친 부분의 특정 속성만 가져오기
-				var intersectionFeatures = getIntersectionFeatures(feature);
-
-                // 필요한 경우 저장된 위치 정보를 활용할 수 있습니다.
-                console.log(polygonCoordinates);
-				console.log(intersectionFeatures);
-				// 모달 창 열기
-				// openCustomModal(polygonCoordinates);
-				openCustomModal(intersectionFeatures);
-            });
-
-            map.addInteraction(draw);
-        }
-    }
-
-	// 겹친 좌표를 통해 면허어장도 레이어의 다른 정보 불러오기
-	function getIntersectionFeatures(polygonFeature) {
-		var intersectionFeatures = [];
-		var polygonGeometry = polygonFeature.getGeometry();
-		var fisheryFeatures = fisheryManagementLayer.getSource().getFeatures();
-		
-		fisheryFeatures.forEach(function (fisheryFeature) {
-			var fisheryGeometry = fisheryFeature.getGeometry();
-			var fisheryExtent = fisheryGeometry.getExtent();
-			
-			if (polygonGeometry.intersectsExtent(fisheryExtent)) {
-				var properties = fisheryFeature.getProperties();
-				var selectedProperties = {
-					license_nu: properties.license_nu,
-					fishery_space: properties.fishery_space
-				};
-				intersectionFeatures.push(selectedProperties);
-			}
-		});
-		return intersectionFeatures;
-	}
-	
-	function openCustomModal(features) {
-	    var customModal = document.getElementById('custom-modal');
-	    var contentList = document.getElementById('content-list');
-	    customModal.style.display = "block";
-	    contentList.innerHTML = '';
-
-	    features.forEach(function(feature) {
-			var listItem = document.createElement('li');
-			var licenseNu = feature.license_nu;
-			var fisherySpace = feature.fishery_space;
-			listItem.textContent = "어장도명: " + licenseNu + ", 면적: " + fisherySpace;
-			contentList.appendChild(listItem);
-	    });
-	}
-	
-	function closeCustomModal() {
-	    var customModal = document.getElementById('custom-modal');
-	    customModal.style.display = "none";
-	}
-
-    function removeInteraction() {
-        map.removeInteraction(draw);
-    }
-
-    typeSelect.onchange = function () {
-        map.removeInteraction(draw);
-        addInteraction();
-    };
+typeSelect.onchange = function () {
+  map.removeInteraction(draw);
+  addInteraction();
+};
       
 
 //------------------------------------------------------------------------------------

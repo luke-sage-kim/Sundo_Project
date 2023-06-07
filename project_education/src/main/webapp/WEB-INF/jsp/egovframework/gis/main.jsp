@@ -178,7 +178,7 @@
                      </div>
                   </li>
                   
-                           <li class="draw">
+                  <li class="draw">
                       <a href="#void" style="display: flex; align-items: center;">
 						  <img src="images/gis/pen.png" style="width: 17px; margin-right: 5px; margin-bottom: 48px; margin-left: 18px;">
 						  <span style="margin-left: -28px; margin-bottom: 10px;">그리기</span>
@@ -186,12 +186,13 @@
                       <div class="info">
                           <h4>그리기<button type="button" class="btn-close"></button></h4>
                           <form>
-                              <label for="type">Measurement type &nbsp;</label>
+                           <!--    <label for="type">Measurement type &nbsp;</label> -->
                               <select id="type">
-                                  <option value="LineString">Length (LineString)</option>
-                                  <option value="Polygon">Area (Polygon)</option>
+                                 <option value="LineString">라인스트링</option> 
+                                  <option value="Polygon">폴리곤</option>
                               </select>
                               <button onclick="resetMap()">초기화</button>
+                               <button onclick="removeInteraction()">종료</button>
                           </form>
                       </div>
                   </li>
