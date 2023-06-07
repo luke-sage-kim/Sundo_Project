@@ -162,12 +162,12 @@
                          </div>
                          
                          <div class="inputWrap">
-                           <input class="layer" type="checkbox" checked id="proteted_area">
+                           <input class="layer" type="checkbox" id="proteted_area">
                            <label for="proteted_area">보호구역</label>
                          </div>
                          
                          <div class="inputWrap">
-                           <input class="layer" type="checkbox" checked id="ctp_rvb">
+                           <input class="layer" type="checkbox" id="ctp_rvb">
                            <label for="ctp_rvb">시,도 구분</label>
                          </div>
                          
@@ -216,11 +216,11 @@
 
                            <!--    <label for="type">Measurement type &nbsp;</label> -->
                               <select id="type">
-                                 <option value="LineString">라인스트링</option> 
-                                  <option value="Polygon">폴리곤</option>
+                                 <option value="LineString">&nbsp;&nbsp;&nbsp;&nbsp;라인스트링&nbsp;&nbsp;&nbsp;&nbsp;</option> 
+                                  <option value="Polygon">&nbsp;&nbsp;&nbsp;&nbsp;폴리곤&nbsp;&nbsp;&nbsp;&nbsp;</option>
                               </select>
-                              <button onclick="resetMap()">초기화</button>
-                               <button onclick="removeInteraction()">종료</button>
+                               <button class="button" onclick="resetMap()">초기화</button>
+                           <button class="button" onclick="removeInteraction()">&nbsp;종료&nbsp;</button>
 
                           </form>
                       </div>
