@@ -10,7 +10,8 @@
    <link type="text/css" href="style/main.css" rel="stylesheet">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
+	<script defer src="script/main/main.js"></script>
+	
 </head>
  <script type="module" src="main.js"></script>
     <!-- OpenLayers 라이브러리 스타일시트 -->
@@ -117,9 +118,9 @@
             <div class="gis-map-btn">
                <ul class="gis-map-btn-option">
                   <li class="map">
-                  <a href="#void" style="display: flex; align-items: center;">
-						  <img src="images/gis/i-map.svg" style="width: 20px; margin-right: 5px; margin-bottom: 48px; margin-left: 15px;">
-						  <span style="margin-left: -32px; margin-bottom: 10px;">배경지도</span>
+                  <a href="#void" style="display: flex; align-items: center;" onclick="changeMapImage()">
+                    <img src="images/gis/i-map.svg" id="mapImg" style="width: 20px; margin-right: 5px; margin-bottom: 48px; margin-left: 15px;">
+                    <span style="margin-left: -32px; margin-bottom: 10px;">배경지도</span>
                       </a>
                      <div class="info">
                         <div class="info-find">
@@ -131,10 +132,11 @@
                      </div>
                   </li>
                   
-                  <li class="layer"><a href="#void" style="display: flex; align-items: center;">
-						  <img src="images/gis/i-layer.svg" style="width: 23px; margin-right: 5px; margin-bottom: 48px; margin-left: 14px;">
-						  <span style="margin-left: -30px; margin-bottom: 10px;">레이어</span>
+                  <li class="layer"><a href="#void" style="display: flex; align-items: center;" onclick="changeLayerImage()">
+                    <img src="images/gis/i-layer.svg" id="layerImg" style="width: 23px; margin-right: 5px; margin-bottom: 48px; margin-left: 14px;">
+                    <span style="margin-left: -30px; margin-bottom: 10px;">레이어</span>
                       </a>
+
                      <div class="info">
                        <h4>레이어<button type="button" class="btn-close"></button></h4>
                        <div class="info-inner">
@@ -161,10 +163,11 @@
                      </div>
                   </li>
                   <li class="legend">
-                  <a href="#void" style="display: flex; align-items: center;">
-						  <img src="images/gis/i-legend.svg" style="width: 19px; margin-right: 5px; margin-bottom: 48px; margin-left: 16px;">
-						  <span style="margin-left: -24px; margin-bottom: 10px;">범례</span>
+                    <a href="#void" style="display: flex; align-items: center;"  onclick="changeLegendImage()">
+                    <img src="images/gis/i-legend.svg" id="legendImg"  style="width: 19px; margin-right: 5px; margin-bottom: 48px; margin-left: 16px;">
+                    <span style="margin-left: -24px; margin-bottom: 10px;">범례</span>
                       </a>
+
                      <div class="info">
                         <h4>범례<button type="button" class="btn-close"></button></h4>
                         <div class="info-inner">
@@ -190,10 +193,11 @@
                   </li>
                   
                   <li class="draw">
-                      <a href="#void" style="display: flex; align-items: center;">
-						  <img src="images/gis/pen.png" style="width: 17px; margin-right: 5px; margin-bottom: 48px; margin-left: 18px;">
-						  <span style="margin-left: -28px; margin-bottom: 10px;">그리기</span>
+                      <a href="#void" style="display: flex; align-items: center;" onclick="changePenImage()">
+                    <img src="images/gis/pen.png" id="penImg"  style="width: 17px; margin-right: 5px; margin-bottom: 48px; margin-left: 18px;">
+                    <span style="margin-left: -28px; margin-bottom: 10px;">그리기</span>
                       </a>
+
                       <div class="info">
                           <h4>그리기<button type="button" class="btn-close"></button></h4>
                           <form>
