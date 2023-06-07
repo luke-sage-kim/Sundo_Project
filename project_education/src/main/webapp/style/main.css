@@ -51,15 +51,48 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  /* background-color: rgba(0, 0, 0, 0.4); */
+  box-shadow: 10px rgba(0, 0, 0, 0.3);
 }
 
 .custom-modal-content {
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
-  width: 60%;
+  border-radius: 10px;
+  width: 40%;
+  box-shadow: 10px rgba(0, 0, 0, 0.3);
+}
+
+.custom-modal-header .btn-close {
+	float: right;
+	cursor: pointer;
+	width: 6px;
+	height: 6px;
+	font-weight: normal;
+}
+
+#custom-table {
+	width: 100%;
+	border-top: 1px solid #f0f0f0;
+	border-collapse: collapse;
+	text-align: center;
+	font-size: 12px;
+	color: #545454;
+}
+
+#custom-table th, td {
+	border-bottom: 1px solid #f0f0f0;
+	padding: 8px;
+}
+
+#custom-table th {
+	background: #f0f0f0;
+	font-weight: normal;
+}
+
+#custom-table td {
+	white-space: nowrap;
 }
 
 .custom-close {
@@ -67,8 +100,4 @@
   cursor: pointer;
 }
 
-#coordinates-list {
-  margin-top: 10px;
-  padding: 0;
-}
 
