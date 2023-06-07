@@ -10,13 +10,54 @@
    <link type="text/css" href="style/main.css" rel="stylesheet">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
 </head>
- <script type="module" src="main.js"></script>
+ 	<script type="module" src="main.js"></script>
     <!-- OpenLayers 라이브러리 스타일시트 -->
     <link rel="stylesheet" href="https://openlayers.org/en/v4.6.4/css/ol.css" type="text/css">
     <!-- OpenLayers 라이브러리 자바스크립트 파일 -->
     <script src="https://openlayers.org/en/v4.6.4/build/ol.js"></script>
+<style>
+    .button {
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 3px;
+        box-shadow: 0 2px #0056b3;
+        margin-left: 8px;
+       	margin-bottom: 10px;
+    }
+
+    .button:hover { background-color: #0056b3; }
+
+    .button:active {
+        background-color: #00499e;
+        box-shadow: 0 1px #00346b;
+        transform: translateY(1px);
+    }
+    
+       #type {
+        padding: 5px 10px;
+        font-size: 14px;
+        color: #007bff;
+        background-color: #fff;
+        border: 1px solid #007bff;
+        border-radius: 3px;
+        text-align: center;
+       	margin-left: 7px;
+       	margin-right: 7px;
+       	margin-bottom: 7px;
+    }
+    
+
+</style>
+    
 <body>
    <section class="gis">
 
@@ -200,16 +241,15 @@
 
                            <!--    <label for="type">Measurement type &nbsp;</label> -->
                               <select id="type">
-                                 <option value="LineString">라인스트링</option> 
-                                  <option value="Polygon">폴리곤</option>
+                                 <option value="LineString">&nbsp;&nbsp;&nbsp;&nbsp;라인스트링&nbsp;&nbsp;&nbsp;&nbsp;</option> 
+                                  <option value="Polygon">&nbsp;&nbsp;&nbsp;&nbsp;폴리곤&nbsp;&nbsp;&nbsp;&nbsp;</option>
                               </select>
-                              <button onclick="resetMap()">초기화</button>
-                               <button onclick="removeInteraction()">종료</button>
+                               <button class="button" onclick="resetMap()">초기화</button>
+   							   <button class="button" onclick="removeInteraction()">&nbsp;종료&nbsp;</button>
 
                           </form>
                       </div>
                   </li>
-                     
                   
                </ul>
                <ul class="gis-map-btn-click">
