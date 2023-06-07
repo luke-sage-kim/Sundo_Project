@@ -40,27 +40,33 @@ var clusterDistance = distance.value; // 클러스터링 거리 설정
 // rnd_layer 스타일 설정
 var rndClusterStyle = new ol.style.Style({
   image: new ol.style.Circle({
-    radius: 10,
+    radius: 11,
     fill: new ol.style.Fill({ color: 'rgba(0, 255, 0, 0.5)' }),
     stroke: new ol.style.Stroke({ color: 'blue', width: 1 })
   }),
   text: new ol.style.Text({
     text: '',
-    fill: new ol.style.Fill({ color: '#fff' })
+    fill: new ol.style.Fill({ color: '#fff' }),
+    font: '12px Arial'
   })
 });
+
+
+
 // marine_eis_data_layer 스타일 설정
 var marineClusterStyle = new ol.style.Style({
   image: new ol.style.Circle({
-    radius: 10,
+    radius: 11,
     fill: new ol.style.Fill({ color: 'rgba(0, 0, 255, 0.5)' }),
     stroke: new ol.style.Stroke({ color: 'blue', width: 1 })
   }),
   text: new ol.style.Text({
     text: '',
-    fill: new ol.style.Fill({ color: '#fff' })
+    fill: new ol.style.Fill({ color: '#fff' }),
+    font: '12px Arial'
   })
 });
+
 
 
 // 클러스터 소스 생성
@@ -83,8 +89,10 @@ var rndClusterLayer = new ol.layer.Vector({
     var size = feature.get('features').length;
     rndClusterStyle.getText().setText(size.toString());
     return rndClusterStyle;
-  }
+  },
+renderBuffer: 100
 });
+
 // marine 클러스터 레이어 생성 
 var marineClusterLayer = new ol.layer.Vector({
   source: marineCluster,
@@ -92,7 +100,8 @@ var marineClusterLayer = new ol.layer.Vector({
     var size = feature.get('features').length;
     marineClusterStyle.getText().setText(size.toString());
     return marineClusterStyle;
-  }
+  },
+renderBuffer: 100
 });
 
 // 지도에 클러스터 레이어 추가
@@ -178,6 +187,11 @@ function clusterLayerUpdate(){
 distance.addEventListener('input', function() {
 	marineClusterLayer.getSource().setDistance(parseInt(distance.value, 10));
 	rndClusterLayer.getSource().setDistance(parseInt(distance.value, 10));
+});
+
+// 지도 이벤트 리스너 등록 (지도 이동 및 확대/축소 시 클러스터 값 재 부여 (중복 방지))
+map.on('moveend', function() {
+  clusterLayerUpdate();
 });
 
 //------------------------------------------------------------------------------------

@@ -206,7 +206,8 @@ var clusterStyle = new ol.style.Style({
   }),
   text: new ol.style.Text({
     text: '',
-    fill: new ol.style.Fill({ color: '#fff' })
+    fill: new ol.style.Fill({ color: '#fff' }),
+	font: '12px Arial'
   })
 });
 

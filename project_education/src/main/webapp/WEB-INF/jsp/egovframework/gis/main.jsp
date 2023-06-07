@@ -34,12 +34,6 @@
 				  </div>
 				  
                   
-                  <div>
-                     <form>
-                           <label id="clusterDistance">cluster distance</label>
-                         <input id="distance" type="range" min="0" max="100" step="1" value="40"/>
-                      </form>
-                  </div>
                   <div class="gis-list-table">
                      <div class="scrollable-div">
                      	<button type="submit" id="category-all">전체 레이어</button>
@@ -148,6 +142,12 @@
                            <input class="layer" type="checkbox" id="fishery_observatory">
                            <label for="fishery_observatory">실시간 해양환경 관측소</label>
                          </div>
+                          <div>
+                     <form>
+                          <label id="clusterDistance" style="margin: 10px">[Cluster 확대/축소]</label>
+                         <input id="distance" type="range" min="0" max="100" step="1" value="40"/>
+                      </form>
+                  </div>
                        </div>
                      </div>
                   </li>
@@ -803,7 +803,7 @@
                          });
                      </script>
       <script defer src="script/main/layer.js"></script>
-      <script defer src="script/main/cluster.js"></script>
+      <script defer src="script/main/cluster.js?0609_25"></script>
       
     <div id="custom-modal" class="custom-modal">
      <div class="custom-modal-content">
