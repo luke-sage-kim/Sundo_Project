@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -11,51 +12,12 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
    <script defer src="script/main/main.js"></script>
-   
 </head>
  <script type="module" src="main.js"></script>
     <!-- OpenLayers 라이브러리 스타일시트 -->
     <link rel="stylesheet" href="https://openlayers.org/en/v4.6.4/css/ol.css" type="text/css">
     <!-- OpenLayers 라이브러리 자바스크립트 파일 -->
     <script src="https://openlayers.org/en/v4.6.4/build/ol.js"></script>
-    <style>
-    .button {
-        display: inline-block;
-        padding: 5px 10px;
-        font-size: 14px;
-        cursor: pointer;
-        text-align: center;
-        text-decoration: none;
-        outline: none;
-        color: #fff;
-        background-color: #007bff;
-        border: none;
-        border-radius: 3px;
-        box-shadow: 0 2px #0056b3;
-        margin-left: 8px;
-       	margin-bottom: 10px;
-    }
-    .button:hover { background-color: #0056b3; }
-    .button:active {
-        background-color: #00499e;
-        box-shadow: 0 1px #00346b;
-        transform: translateY(1px);
-    }
-    
-       #type {
-        padding: 5px 10px;
-        font-size: 14px;
-        color: #007bff;
-        background-color: #fff;
-        border: 1px solid #007bff;
-        border-radius: 3px;
-        text-align: center;
-       	margin-left: 7px;
-       	margin-right: 7px;
-       	margin-bottom: 7px;
-    }
-    
-</style>
 <body>
    <section class="gis">
 
@@ -76,15 +38,17 @@
                   
                   <div>
                      <form>
-                           <label id="clusterDistance">cluster distance</label>
+                           <label id="clusterDistance">클러스터 거리 조정</label>
                          <input id="distance" type="range" min="0" max="100" step="1" value="40"/>
                       </form>
                   </div>
+                  <div class="separator"></div> <!-- 구분선 -->
                     <div class="gis-list-table">
                      <div class="scrollable-div">
-                        <button type="submit" id="category-all">전체 레이어</button>
-                        <button type="submit" id="category-selected">선택된 레이어</button>
-                        <button type="submit" id="category-reset">레이어 초기화</button>
+                        <button type="submit" id="category-all" class="lbutton">전체 레이어</button>
+                        <button type="submit" id="category-selected" class="lbutton">선택된 레이어</button>
+                        <button type="submit" id="category-reset" class="lbutton">레이어 초기화</button>
+                         <div class="separator"></div> <!-- 구분선 -->
                         <ul id="foldable-list">
                            <li>해역이용영향평가GIS레이어
                               <ul>
