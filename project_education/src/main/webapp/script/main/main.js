@@ -1,17 +1,24 @@
 
-var isImageChanged = false;
+// 우측 상단 아이콘 색 변경 js
 
+	var isMapImageChanged 	 = false;
+	var isLayerImageChanged  = false;
+	var isLegendImageChanged = false;
+	var isPenImageChanged 	 = false;
+
+// 초기에 모든 info 요소를 닫음
+	var infoElements = document.querySelectorAll('.info');
    // 맵 아이콘 변경
    function changeMapImage() {
       var img = document.getElementById('mapImg');
        var originalSrc = 'images/gis/i-map.svg';
        var newSrc = 'images/gis/i-map-on.svg';
-       if (!isImageChanged) {
+       if (!isMapImageChanged) {
            img.src = newSrc;
-           isImageChanged = true;
+           isMapImageChanged = true;
        } else {
            img.src = originalSrc;
-           isImageChanged = false;
+           isMapImageChanged = false;
        }
    }
    // 레이어 아이콘 변경
@@ -19,12 +26,12 @@ var isImageChanged = false;
       var img = document.getElementById('layerImg');
        var originalSrc = 'images/gis/i-layer.svg';
        var newSrc = 'images/gis/i-layer-on.svg';
-       if (!isImageChanged) {
+       if (!isLayerImageChanged) {
            img.src = newSrc;
-           isImageChanged = true;
+           isLayerImageChanged = true;
        } else {
            img.src = originalSrc;
-           isImageChanged = false;
+           isLayerImageChanged = false;
        }
    }
    // 범례 아이콘 변경
@@ -32,12 +39,12 @@ var isImageChanged = false;
       var img = document.getElementById('legendImg');
        var originalSrc = 'images/gis/i-legend.svg';
        var newSrc = 'images/gis/i-legend-on.svg';
-       if (!isImageChanged) {
+       if (!isLegendImageChanged) {
            img.src = newSrc;
-           isImageChanged = true;
+           isLegendImageChanged = true;
        } else {
            img.src = originalSrc;
-           isImageChanged = false;
+           isLegendImageChanged = false;
        }
    }
    // 그리기 아이콘 변경
@@ -45,12 +52,31 @@ var isImageChanged = false;
       var img = document.getElementById('penImg');
        var originalSrc = 'images/gis/pen.png';
        var newSrc = 'images/gis/pen-on.png';
-       if (!isImageChanged) {
+       if (!isPenImageChanged) {
            img.src = newSrc;
-           isImageChanged = true;
+           isPenImageChanged = true;
        } else {
            img.src = originalSrc;
-           isImageChanged = false;
+           isPenImageChanged = false;
        }
    }
-   
+//--------------------------------------------------------
+	
+	
+	// info 요소를 열고 닫는 함수
+	function toggleInfo(element) {
+	    var infoElement = element.nextElementSibling;
+	
+	    // 현재 info 요소의 상태 확인
+	    var isInfoOpen = infoElement.style.display === 'block';
+	
+	    // 모든 info 요소를 닫음
+	    infoElements.forEach(function(element) {
+	        element.style.display = 'none';
+	    });
+	
+	    // 현재 요소의 info 요소를 열거나 닫음
+	    if (!isInfoOpen) {
+	        infoElement.style.display = 'block';
+	    }
+	}
