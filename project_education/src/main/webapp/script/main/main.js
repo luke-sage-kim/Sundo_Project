@@ -1,17 +1,20 @@
 
-var isImageChanged = false;
+var isMapImageChanged = false;
+var isLayerImageChanged = false;
+var isLegendImageChanged = false;
+var isPenImageChanged = false;
 
    // 맵 아이콘 변경
    function changeMapImage() {
       var img = document.getElementById('mapImg');
        var originalSrc = 'images/gis/i-map.svg';
        var newSrc = 'images/gis/i-map-on.svg';
-       if (!isImageChanged) {
+       if (!isMapImageChanged) {
            img.src = newSrc;
-           isImageChanged = true;
+           isMapImageChanged = true;
        } else {
            img.src = originalSrc;
-           isImageChanged = false;
+           isMapImageChanged = false;
        }
    }
    // 레이어 아이콘 변경
@@ -19,12 +22,12 @@ var isImageChanged = false;
       var img = document.getElementById('layerImg');
        var originalSrc = 'images/gis/i-layer.svg';
        var newSrc = 'images/gis/i-layer-on.svg';
-       if (!isImageChanged) {
+       if (!isLayerImageChanged) {
            img.src = newSrc;
-           isImageChanged = true;
+           isLayerImageChanged = true;
        } else {
            img.src = originalSrc;
-           isImageChanged = false;
+           isLayerImageChanged = false;
        }
    }
    // 범례 아이콘 변경
@@ -32,12 +35,12 @@ var isImageChanged = false;
       var img = document.getElementById('legendImg');
        var originalSrc = 'images/gis/i-legend.svg';
        var newSrc = 'images/gis/i-legend-on.svg';
-       if (!isImageChanged) {
+       if (!isLegendImageChanged) {
            img.src = newSrc;
-           isImageChanged = true;
+           isLegendImageChanged = true;
        } else {
            img.src = originalSrc;
-           isImageChanged = false;
+           isLegendImageChanged = false;
        }
    }
    // 그리기 아이콘 변경
@@ -45,12 +48,12 @@ var isImageChanged = false;
       var img = document.getElementById('penImg');
        var originalSrc = 'images/gis/pen.png';
        var newSrc = 'images/gis/pen-on.png';
-       if (!isImageChanged) {
+       if (!isPenImageChanged) {
            img.src = newSrc;
-           isImageChanged = true;
+           isPenImageChanged = true;
        } else {
            img.src = originalSrc;
-           isImageChanged = false;
+           isPenImageChanged = false;
        }
    }
    
