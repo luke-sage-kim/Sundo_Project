@@ -18,6 +18,44 @@
     <link rel="stylesheet" href="https://openlayers.org/en/v4.6.4/css/ol.css" type="text/css">
     <!-- OpenLayers 라이브러리 자바스크립트 파일 -->
     <script src="https://openlayers.org/en/v4.6.4/build/ol.js"></script>
+    <style>
+    .button {
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 3px;
+        box-shadow: 0 2px #0056b3;
+        margin-left: 8px;
+       	margin-bottom: 10px;
+    }
+    .button:hover { background-color: #0056b3; }
+    .button:active {
+        background-color: #00499e;
+        box-shadow: 0 1px #00346b;
+        transform: translateY(1px);
+    }
+    
+       #type {
+        padding: 5px 10px;
+        font-size: 14px;
+        color: #007bff;
+        background-color: #fff;
+        border: 1px solid #007bff;
+        border-radius: 3px;
+        text-align: center;
+       	margin-left: 7px;
+       	margin-right: 7px;
+       	margin-bottom: 7px;
+    }
+    
+</style>
 <body>
    <section class="gis">
 
