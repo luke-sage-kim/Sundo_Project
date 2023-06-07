@@ -87,8 +87,7 @@ function updateLayerByName(name) {
 }
   
 
-//------------------------------------------------------------------------------------
-// 기타 레이어
+// ---------------------------- 기타 레이어 -------------------------------------
 
 // 보호구역 레이어 입력
  var protectedAreaLayer = new ol.layer.Tile({
@@ -119,54 +118,60 @@ function updateLayerByName(name) {
       serverType : 'geoserver',
    })
 });
-   
 
-// 레이어 입력    
 map.addLayer(protectedAreaLayer);
 map.addLayer(sidoEdgeLayer);
 
-// 어장도 레이어 입력
- var fishingGroundLayer = new ol.layer.Tile({
-   source : new ol.source.TileWMS({
-      url : 'http://210.113.102.169:8090/geoserver/EDU5/wms?service=WMS', // 1. 레이어 URL
-      params : {
-         'VERSION' : '1.1.0', // 2. 버전
-         'LAYERS' : 'EDU5:fishingGround_jh', // 3. 작업공간:레이어 명
-         'BBOX' : [128.09794, 34.85631667, 128.50822, 35.07274722], 
-         'SRS' : 'EPSG:4326', // SRID
-         'FORMAT' : 'image/png' // 포맷
-      },
-      serverType : 'geoserver',
-   })
+// 보호구역 체크박스 클릭 이벤트 처리
+var protectedAreaCheckbox = document.getElementById('proteted_area');
+protectedAreaCheckbox.addEventListener('change', function() {
+    if (!this.checked) {
+        map.removeLayer(protectedAreaLayer);
+    } else {
+        map.addLayer(protectedAreaLayer);
+    }
 });
+
+// 시도 구분 체크박스 클릭 이벤트 처리
+var ctpRvbCheckbox = document.getElementById('ctp_rvb');
+ctpRvbCheckbox.addEventListener('change', function() {
+    if (!this.checked) {
+        map.removeLayer(sidoEdgeLayer);
+    } else {
+        map.addLayer(sidoEdgeLayer);
+    }
+});
+
+
+
 
 // 체크박스 요소 선택
 var fisheryManagementCheckbox = document.getElementById('fishery_management');
 var fisheryObservatoryCheckbox = document.getElementById('fishery_observatory');
+
 
 // 체크박스 상태 변경 이벤트 리스너 추가
 fisheryManagementCheckbox.addEventListener('change', toggleFisheryManagementLayer);
 var fisheryManagementLayer;
 
 // 면허어장도 레이어 표출/비표출 함수
-	function toggleFisheryManagementLayer() {
-	  if (fisheryManagementCheckbox.checked) {
-	    // WFS 소스 생성
-	    var fisheryManagementSource = new ol.source.Vector({
-	      format: new ol.format.GeoJSON(),
-	      url: 'http://210.113.102.169:8090/geoserver/EDU3/wfs?service=WFS&version=1.1.0&'
-				+'request=GetFeature&typeName=EDU3:LF_layer&outputFormat=application/json&srsname=EPSG:4326'
-	    });
-	    // 면허어장도 레이어 생성
-	    fisheryManagementLayer = new ol.layer.Vector({
-	      source: fisheryManagementSource
-	    });
-	    map.addLayer(fisheryManagementLayer);
-	  } else {
-	    map.removeLayer(fisheryManagementLayer);
-	  }
+function toggleFisheryManagementLayer() {
+	if (fisheryManagementCheckbox.checked) {
+    // WFS 소스 생성
+    var fisheryManagementSource = new ol.source.Vector({
+    	format: new ol.format.GeoJSON(),
+   		url: 'http://210.113.102.169:8090/geoserver/EDU3/wfs?service=WFS&version=1.1.0&'
+			+'request=GetFeature&typeName=EDU3:LF_layer&outputFormat=application/json&srsname=EPSG:4326'
+    });
+    // 면허어장도 레이어 생성
+    fisheryManagementLayer = new ol.layer.Vector({
+    	source: fisheryManagementSource
+    });
+    	map.addLayer(fisheryManagementLayer);
+	} else {
+    	map.removeLayer(fisheryManagementLayer);
 	}
-
+}
 
 fisheryObservatoryCheckbox.addEventListener('change', function() {
   if (fisheryObservatoryCheckbox.checked) {
@@ -435,73 +440,4 @@ let drawLayer = new ol.layer.Vector({
         addInteraction();
     };
       
-
-//------------------------------------------------------------------------------------
- /*
-// 클러스터 데이터 요청(cors 보안이슈로 인한 wfs 사용하지 않는 버전)
-// 2023-05-30 조경민 : 보안이슈 해결로 현재 사용하지 않음
-
-$.ajax({
-    url: '/project_education/main/cluster-coordinates.do',
-    method: 'GET',
-    dataType: 'json'
-}).done(function(response) {
-    var features = new Array(response.length);
-    
-    for (var i = 0; i < response.length; i++) {
-        var coordinate = [response[i].r_lon , response[i].r_lat];
-        features[i] = new ol.Feature(new ol.geom.Point(ol.proj.transform(coordinate,'EPSG:4326', 'EPSG:900913')));
-    }
-    
-    var source = new ol.source.Vector({
-      features: features
-   });
-   
-   var cluster = new ol.source.Cluster({
-      distance: parseInt(distance.value, 10),
-      source: source
-   });
-   
-   var styleCache = {};
-   var clusterLayer = new ol.layer.Vector({
-    source: cluster,
-    style: function(feature) {
-      var size = feature.get('features').length;
-      var style = styleCache[size];
-      if (!style) {
-        style = new ol.style.Style({
-          image: new ol.style.Circle({
-            radius: 13,
-            stroke: new ol.style.Stroke({
-              color: '#fff'
-            }),
-            fill: new ol.style.Fill({
-              color: '#3399CC'
-            })
-          }),
-          text: new ol.style.Text({
-            text: size.toString(),
-            fill: new ol.style.Fill({
-              color: '#fff'
-            })
-          })
-        });
-        styleCache[size] = style;
-      }
-      return style;
-    }
-  });
-  
-  map.addLayer(clusterLayer);
-    
-}).fail(function(error) {
-    console.log(JSON.stringify(error.responseText));
-});
-   
-    
-*/
-
-
-
-
 
