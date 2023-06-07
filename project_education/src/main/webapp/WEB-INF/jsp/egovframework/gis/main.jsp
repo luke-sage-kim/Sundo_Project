@@ -45,8 +45,11 @@
                          <input id="distance" type="range" min="0" max="100" step="1" value="40"/>
                       </form>
                   </div>
-                  <div class="gis-list-table">
+                    <div class="gis-list-table">
                      <div class="scrollable-div">
+                     	<button type="submit" id="category-all">전체 레이어</button>
+	                  	<button type="submit" id="category-selected">선택된 레이어</button>
+	                  	<button type="submit" id="category-reset">레이어 초기화</button>
                         <ul id="foldable-list">
                            <li>해역이용영향평가GIS레이어
                               <ul>
@@ -805,23 +808,6 @@
           </div>
         </div>
       </div>
-      <script>
-                         document.addEventListener("DOMContentLoaded", function() {
-                             var foldableList = document.querySelector("#foldable-list");
-                             
-                             foldableList.addEventListener("click", function(event) {
-                                 var target = event.target;
-                                 if (target.tagName === "LI") {
-                                     var sublist = target.querySelector("ul");
-                                     if (sublist) {
-                                         sublist.style.display = sublist.style.display === "none" ? "block" : "none";
-                                     }
-                                 }
-                             });
-                         });
-                     </script>
-      <script defer src="script/main/layer.js"></script>
-      <script defer src="script/main/cluster.js"></script>
       
     <div id="custom-modal" class="custom-modal">
 		<div class="custom-modal-dialog">
@@ -871,6 +857,25 @@
           customModal.style.display = "none";
         }
    </script>
+   
+      <script>
+       document.addEventListener("DOMContentLoaded", function() {
+           var foldableList = document.querySelector("#foldable-list");
+           
+           foldableList.addEventListener("click", function(event) {
+               var target = event.target;
+               if (target.tagName === "LI") {
+                   var sublist = target.querySelector("ul");
+                   if (sublist) {
+                       sublist.style.display = sublist.style.display === "none" ? "block" : "none";
+                   }
+               }
+           });
+       });
+      </script>
+      <script defer src="script/main/layer.js?0607"></script>
+      <script defer src="script/main/cluster.js?0607"></script>
+      <script defer src="script/main/category.js?0607_12"></script>
   
 
 </body>
