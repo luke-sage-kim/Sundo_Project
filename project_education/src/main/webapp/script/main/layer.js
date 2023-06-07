@@ -249,7 +249,14 @@ map.on('pointermove', function(event) {
   // 클릭한 좌표 주변의 피처 가져오기
   var features = map.getFeaturesAtPixel(pixel);
 
+  // 폴리곤 그리기 기능이 실행 중인지 확인
+  var isDrawing = map.getInteractions().getArray().some(function(interaction) {
+    return interaction instanceof ol.interaction.Draw;
+  });
+
   // 팝업 닫기 
+
+  if (!isDrawing) {	
   overlay.setPosition(undefined);
 
   if (features && features.length > 0) {
@@ -309,6 +316,7 @@ map.on('pointermove', function(event) {
     // 팝업을 클릭한 피처의 위치에 표시 
     overlay.setPosition(event.coordinate);
   }
+}
 });
      
 //------------------------------------------------------------------------------------
