@@ -121,27 +121,24 @@ function updateLayerByName(name) {
 });
    
 
-// 레이어 입력    
-map.addLayer(protectedAreaLayer);
-map.addLayer(sidoEdgeLayer);
 
 // 보호구역 체크박스 클릭 이벤트 처리
 var protectedAreaCheckbox = document.getElementById('proteted_area');
 protectedAreaCheckbox.addEventListener('change', function() {
-    if (!this.checked) {
-        map.removeLayer(protectedAreaLayer);
+    if (this.checked) {
+		map.addLayer(protectedAreaLayer);
     } else {
-        map.addLayer(protectedAreaLayer);
+        map.removeLayer(protectedAreaLayer);
     }
 });
 
 // 시도 구분 체크박스 클릭 이벤트 처리
 var ctpRvbCheckbox = document.getElementById('ctp_rvb');
 ctpRvbCheckbox.addEventListener('change', function() {
-    if (!this.checked) {
-        map.removeLayer(sidoEdgeLayer);
-    } else {
+    if (this.checked) {
         map.addLayer(sidoEdgeLayer);
+    } else {
+		map.removeLayer(sidoEdgeLayer);
     }
 });
 
@@ -309,13 +306,13 @@ map.on('pointermove', function(event) {
     
     // 팝업창에 정보 입력
     observatory_nm.innerHTML = nullCheck(properties['observator']).replace(/\(.*\)/g, '')+
-   '<span class="date">'+ (properties['obsDtm'] != null ? formatTime(properties['obsDtm']) : '자료없음' )+'</span>';
-    surface_class.innerText = nullCheckWtr(properties['wtrTmp_1']);
-    middle_class.innerText = nullCheckWtr(properties['wtrTmp_2']);
-    low_class.innerText = nullCheckWtr(properties['wtrTmp_3']);
+   '<span class="date">'+ (properties['obsdtm'] != null ? formatTime(properties['obsdtm']) : '자료없음' )+'</span>';
+    surface_class.innerText = nullCheckWtr(properties['wtrtmp1']);
+    middle_class.innerText = nullCheckWtr(properties['wtrtmp2']);
+    low_class.innerText = nullCheckWtr(properties['wtrtmp3']);
     //temp.innerText = nullCheck(properties['low_class']);
-    salt.innerText = nullCheck(properties['cdt_1']);
-    oxygen.innerText = nullCheckOxygen(properties['dox_1']);
+    salt.innerText = nullCheck(properties['cdt1']);
+    oxygen.innerText = nullCheckOxygen(properties['dox1']);
     
     
     // 팝업을 클릭한 피처의 위치에 표시 
