@@ -180,6 +180,10 @@ distance.addEventListener('input', function() {
 	rndClusterLayer.getSource().setDistance(parseInt(distance.value, 10));
 });
 
+map.on('moveend', function() {
+  clusterLayerUpdate();
+});
+
 //------------------------------------------------------------------------------------
 // 클러스터 클릭시 이벤트 생성. 
 // 2023-05-31 조경민 : 현재는 사용 안함(수정중: 사용하려면 main.jsp에 map-info id를 가진 div 추가)
