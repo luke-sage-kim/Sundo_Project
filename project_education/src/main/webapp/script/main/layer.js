@@ -125,19 +125,24 @@ function updateLayerByName(name) {
 map.addLayer(protectedAreaLayer);
 map.addLayer(sidoEdgeLayer);
 
-// 어장도 레이어 입력
- var fishingGroundLayer = new ol.layer.Tile({
-   source : new ol.source.TileWMS({
-      url : 'http://210.113.102.169:8090/geoserver/EDU5/wms?service=WMS', // 1. 레이어 URL
-      params : {
-         'VERSION' : '1.1.0', // 2. 버전
-         'LAYERS' : 'EDU5:fishingGround_jh', // 3. 작업공간:레이어 명
-         'BBOX' : [128.09794, 34.85631667, 128.50822, 35.07274722], 
-         'SRS' : 'EPSG:4326', // SRID
-         'FORMAT' : 'image/png' // 포맷
-      },
-      serverType : 'geoserver',
-   })
+// 보호구역 체크박스 클릭 이벤트 처리
+var protectedAreaCheckbox = document.getElementById('proteted_area');
+protectedAreaCheckbox.addEventListener('change', function() {
+    if (!this.checked) {
+        map.removeLayer(protectedAreaLayer);
+    } else {
+        map.addLayer(protectedAreaLayer);
+    }
+});
+
+// 시도 구분 체크박스 클릭 이벤트 처리
+var ctpRvbCheckbox = document.getElementById('ctp_rvb');
+ctpRvbCheckbox.addEventListener('change', function() {
+    if (!this.checked) {
+        map.removeLayer(sidoEdgeLayer);
+    } else {
+        map.addLayer(sidoEdgeLayer);
+    }
 });
 
 // 체크박스 요소 선택
