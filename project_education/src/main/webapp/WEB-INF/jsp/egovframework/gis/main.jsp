@@ -146,6 +146,17 @@
                            <input class="layer" type="checkbox" id="fishery_observatory">
                            <label for="fishery_observatory">실시간 해양환경 관측소</label>
                          </div>
+                         
+                         <div class="inputWrap">
+                           <input class="layer" type="checkbox" checked id="proteted_area">
+                           <label for="proteted_area">보호구역</label>
+                         </div>
+                         
+                         <div class="inputWrap">
+                           <input class="layer" type="checkbox" checked id="ctp_rvb">
+                           <label for="ctp_rvb">시,도 구분</label>
+                         </div>
+                         
                        </div>
                      </div>
                   </li>
@@ -186,6 +197,7 @@
                       <div class="info">
                           <h4>그리기<button type="button" class="btn-close"></button></h4>
                           <form>
+
                            <!--    <label for="type">Measurement type &nbsp;</label> -->
                               <select id="type">
                                  <option value="LineString">라인스트링</option> 
@@ -193,6 +205,7 @@
                               </select>
                               <button onclick="resetMap()">초기화</button>
                                <button onclick="removeInteraction()">종료</button>
+
                           </form>
                       </div>
                   </li>
