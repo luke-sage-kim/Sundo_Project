@@ -347,7 +347,35 @@
 		    </table>
 		  </div>
 		</div>
-   
+   <div id="custom-modal" class="custom-modal">
+      <div class="custom-modal-dialog">
+         <div class="custom-modal-content">
+            <div class="custom-modal-header">
+               <button type="button" class="btn-close" onclick="closeCustomModal()" 
+               data-bs-dismiss="modal" aria-label="Close">
+               </button>
+               <p class="custom-modal-title" id="customModalLabel"
+               style="font-size: 14px; font-weight: normal; color: #666666;">결과보고서</p>
+               <hr>
+            </div>
+            <div class="custom-modal-body">
+               <h2 class="custom-table-title" style="font-size: 12px; color: #555555;">
+               지리정보 분석결과</h2>
+               <table id="custom-table">
+                  <thead>
+                     <tr>
+                        <th>어장도명</th>
+                        <th>면적</th>
+                     </tr>
+                  </thead>
+                  <tbody id="fishery_table_tbody">
+                  <!-- 어장정보 위치 -->
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
 
 	<script defer src="script/main/layer.js"></script>
 	<script defer src="script/main/cluster.js"></script>
