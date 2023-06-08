@@ -42,8 +42,8 @@ let Satellite = new ol.layer.Tile({
     layers: [Hybrid, white, Satellite, Base],
     target: 'gis_map',
     view: new ol.View({
-      center: ol.proj.fromLonLat([128.4, 35.7]),
-      zoom: 7
+      center: ol.proj.fromLonLat([127.5, 37.5]),
+      zoom: 7.5
     })
   });
 
