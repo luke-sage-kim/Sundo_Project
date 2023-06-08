@@ -125,226 +125,236 @@
             </div>
          </div>
 
-         
-         
-         <div class="gis-map" id="gis_map">
-            <div class="gis-map-btn">
-               <ul class="gis-map-btn-option">
-                  <li class="map">
-                  <a href="#void" style="display: flex; align-items: center;" onclick="changeMapImage()">
-                    <img src="images/gis/i-map.svg" id="mapImg" style="width: 20px; margin-right: 5px; margin-bottom: 48px; margin-left: 15px;">
-                    <span style="margin-left: -32px; margin-bottom: 10px;">배경지도</span>
-                      </a>
-                     <div class="info">
-                        <div class="info-find">
-                           <a id="vworld-base" class="on" href="#void"><img src="images/basemap/vworld-base-thumb.png" alt="" />일반지도</a>
-                           <a id="vworld-gray" class="" href="#void"><img src="images/basemap/vworld-gray-thumb.png" alt="" />회색지도</a>
-                           <a id="vworld-satbrid" class="" href="#void"><img src="images/basemap/vworld-satbrid-thumb.png" alt="" />위성지도</a>
-                           <a id="vworld-sathybrid" class="" href="#void"><img src="images/basemap/vworld-hybrid-thumb.PNG" alt="" />하이브리드</a>
-                        </div>
-                     </div>
-                  </li>
+
+        <div class="gis-map" id="gis_map">
+         <div class="gis-map-btn">
+           <ul class="gis-map-btn-option">
+            <li class="map">
+              <a href="#void" style="display: flex; align-items: center;" onclick="changeMapImage()">
+               <img src="images/gis/i-map.svg" id="mapImg" style="width: 20px; margin-right: 5px; margin-bottom: 48px; margin-left: 15px;">
+               <span style="margin-left: -32px; margin-bottom: 10px;">배경지도</span>
+              </a>
+              <div class="info">
+               <div class="info-find">
+                 <a id="vworld-base" class="on" href="#void"><img src="images/basemap/vworld-base-thumb.png" alt="" />일반지도</a>
+                 <a id="vworld-gray" class="" href="#void"><img src="images/basemap/vworld-gray-thumb.png" alt="" />회색지도</a>
+                 <a id="vworld-satbrid" class="" href="#void"><img src="images/basemap/vworld-satbrid-thumb.png" alt="" />위성지도</a>
+                 <a id="vworld-sathybrid" class="" href="#void"><img src="images/basemap/vworld-hybrid-thumb.PNG" alt="" />하이브리드</a>
+               </div>
+              </div>
+            </li>
                   
-                  <li class="layer"><a href="#void" style="display: flex; align-items: center;" onclick="changeLayerImage()">
-                    <img src="images/gis/i-layer.svg" id="layerImg" style="width: 23px; margin-right: 5px; margin-bottom: 48px; margin-left: 14px;">
-                    <span style="margin-left: -30px; margin-bottom: 10px;">레이어</span>
-                      </a>
-
-                     <div class="info">
-                       <h4>레이어<button type="button" class="btn-close"></button></h4>
-                       <div class="info-inner">
-                         <div class="inputWrap">
-                           <input class="layer" type="checkbox" id="fishery_management">
-                           <label for="fishery_management">면허어장도</label>
-                         </div>
-                         <div class="inputWrap">
-                           <input class="layer" type="checkbox" id="fishery_observatory">
-                           <label for="fishery_observatory">실시간 해양환경 관측소</label>
-                         </div>
-                         
-                         <div class="inputWrap">
-                           <input class="layer" type="checkbox" id="proteted_area">
-                           <label for="proteted_area">보호구역</label>
-                         </div>
-                         
-                         <div class="inputWrap">
-                           <input class="layer" type="checkbox" id="ctp_rvb">
-                           <label for="ctp_rvb">시,도 구분</label>
-                         </div>
-                         
-                       </div>
-                     </div>
-                  </li>
-                  <li class="legend">
-                    <a href="#void" style="display: flex; align-items: center;"  onclick="changeLegendImage()">
-                    <img src="images/gis/i-legend.svg" id="legendImg"  style="width: 19px; margin-right: 5px; margin-bottom: 48px; margin-left: 16px;">
-                    <span style="margin-left: -24px; margin-bottom: 10px;">범례</span>
-                      </a>
-
-                     <div class="info">
-                        <h4>범례<button type="button" class="btn-close"></button></h4>
-                        <div class="info-inner">
-                           <ul>
-                                <li>
-                                    <img src="images/icon/nifs.png" style="width: 20px; margin-right: 10px;"> 국립수산과학원
-                                </li>
-                                <li>
-                                    <img src="images/icon/kma.png" style="width: 20px; margin-right: 10px;"> 기상청
-                                </li>
-                                <li>
-                                    <img src="images/icon/khnp.png" style="width: 20px; margin-right: 10px;"> 한국수력원자력
-                                </li>
-                                <li>
-                                    <img src="images/icon/government.png" style="width: 20px; margin-right: 10px;"> 지자체
-                                </li>
-                                <li>
-                                    <img src="images/icon/inspect.png" style="width: 20px; margin-right: 10px;"> 점검중
-                                </li>
-                           </ul>
-                        </div>
-                     </div>
-                  </li>
+            <li class="layer">
+              <a href="#void" style="display: flex; align-items: center;" onclick="changeLayerImage()">
+               <img src="images/gis/i-layer.svg" id="layerImg" style="width: 23px; margin-right: 5px; margin-bottom: 48px; margin-left: 14px;">
+               <span style="margin-left: -30px; margin-bottom: 10px;">레이어</span>
+              </a>
+              <div class="info">
+               <h4>레이어<button type="button" class="btn-close"></button></h4>
+               <div class="info-inner">
+                 <div class="inputWrap">
+                  <input class="layer" type="checkbox" id="fishery_management">
+                  <label for="fishery_management">면허어장도</label>
+                 </div>
+                 <div class="inputWrap">
+                  <input class="layer" type="checkbox" id="fishery_observatory">
+                  <label for="fishery_observatory">실시간 해양환경 관측소</label>
+                 </div>
+                 <div class="inputWrap">
+                  <input class="layer" type="checkbox" id="proteted_area">
+                  <label for="proteted_area">보호구역</label>
+                 </div>
+                 <div class="inputWrap">
+                  <input class="layer" type="checkbox" id="ctp_rvb">
+                  <label for="ctp_rvb">시,도 구분</label>
+                 </div>
+               </div>
+              </div>
+            </li>
                   
-                  <li class="draw">
-                      <a href="#void" style="display: flex; align-items: center;" onclick="changePenImage()">
-                    <img src="images/gis/pen.png" id="penImg"  style="width: 17px; margin-right: 5px; margin-bottom: 48px; margin-left: 18px;">
-                    <span style="margin-left: -28px; margin-bottom: 10px;">그리기</span>
-                      </a>
-
-                      <div class="info">
-                          <h4>그리기<button type="button" class="btn-close"></button></h4>
-                          <form>
-
-                           <!--    <label for="type">Measurement type &nbsp;</label> -->
-                              <select id="type">
-                                 <option value="LineString">&nbsp;&nbsp;&nbsp;&nbsp;라인스트링&nbsp;&nbsp;&nbsp;&nbsp;</option> 
-                                  <option value="Polygon">&nbsp;&nbsp;&nbsp;&nbsp;폴리곤&nbsp;&nbsp;&nbsp;&nbsp;</option>
-                              </select>
-                               <button class="button" onclick="resetMap()">초기화</button>
-                           <button class="button" onclick="removeInteraction()">&nbsp;종료&nbsp;</button>
-
-                          </form>
-                      </div>
+            <li class="legend">
+              <a href="#void" style="display: flex; align-items: center;"  onclick="changeLegendImage()">
+               <img src="images/gis/i-legend.svg" id="legendImg"  style="width: 19px; margin-right: 5px; margin-bottom: 48px; margin-left: 16px;">
+                <span style="margin-left: -24px; margin-bottom: 10px;">범례</span>
+              </a>
+              <div class="info">
+               <h4>범례<button type="button" class="btn-close"></button></h4>
+                <div class="info-inner">
+                 <ul>
+                  <li>
+                    <img src="images/icon/nifs.png" style="width: 20px; margin-right: 10px;"> 국립수산과학원
                   </li>
-                     
+                  <li>
+                    <img src="images/icon/kma.png" style="width: 20px; margin-right: 10px;"> 기상청
+                  </li>
+                  <li>
+                    <img src="images/icon/khnp.png" style="width: 20px; margin-right: 10px;"> 한국수력원자력
+                  </li>
+                  <li>
+                    <img src="images/icon/government.png" style="width: 20px; margin-right: 10px;"> 지자체
+                  </li>
+                  <li>
+                    <img src="images/icon/inspect.png" style="width: 20px; margin-right: 10px;"> 점검중
+                  </li>
+                 </ul>
+               </div>
+              </div>
+            </li>
                   
-               </ul>
-               <ul class="gis-map-btn-click">
-                  <li class="plus" id="zoom-in">
-                 <a href="#void" style="display: flex; justify-content: center; align-items: center;">
-                   <img src="images/gis/i-plus.svg" style="width: 20px;">
-                 </a>
-              </li>
-              <li class="minus" id="zoom-out">
-                 <a href="#void" style="display: flex; justify-content: center; align-items: center;">
-                   <img src="images/gis/i-minus.svg" style="width: 20px;">
-                 </a>
-              </li>
-               </ul>
-            </div>
-            
-         </div>
-         
-      </div>
-      
-      </section>
-      
-      <!-- 실시간 해양환경 관측소 마우스 오버 팝업창 -->
-      <div id="real_time_inform" class="ol-new-popup">
-        <div id="mapLayer_head" class="ol-new-popup-head">
-          <h1 class="overlay-title" id="observatory_nm">
-            통영 학림
-            <span class="date">2022-10-04 14:30</span>
-          </h1>
-        </div>
-        <div id="mapLayer_content" class="tableWrap type3">
-          <table id="observatory_inform">
-            <tr>
-              <th>표층수온</th>
-              <th>중층수온</th>
-              <th>저층수온</th>
-            </tr>
-            <tr>
-              <td id="surface_class">23.2℃</td>
-              <td id="middle_class">미설치</td>
-              <td id="low_class">미설치</td>
-            </tr>
-            <tr>
-              <th>기온</th>
-              <td colspan="2" id="temp">미설치</td>
-            </tr>
-            <tr>
-              <th>염분</th>
-              <td colspan="2" id="salt">32.11</td>
-            </tr>
-            <tr>
-              <th>용존산소</th>
-              <td colspan="2" id="oxygen">7.04mg/L</td>
-            </tr>
-          </table>
+            <li class="draw">
+              <a href="#void" style="display: flex; align-items: center;" onclick="changePenImage()">
+               <img src="images/gis/pen.png" id="penImg"  style="width: 17px; margin-right: 5px; margin-bottom: 48px; margin-left: 18px;">
+                <span style="margin-left: -28px; margin-bottom: 10px;">그리기</span>
+              </a>
+              <div class="info">
+               <h4>그리기<button type="button" class="btn-close"></button></h4>
+               <form>
+                 <select id="type">
+                  <option value="LineString">&nbsp;&nbsp;&nbsp;&nbsp;라인스트링&nbsp;&nbsp;&nbsp;&nbsp;</option> 
+                  <option value="Polygon">&nbsp;&nbsp;&nbsp;&nbsp;폴리곤&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                 </select>
+                 <button class="button" onclick="resetMap()">초기화</button>
+                 <button class="button" onclick="removeInteraction()">&nbsp;종료&nbsp;</button>
+               </form>
+              </div>
+            </li>
+           </ul>
+         <ul class="gis-map-btn-click">
+           <li class="plus" id="zoom-in">
+            <a href="#void" style="display: flex; justify-content: center; align-items: center;">
+              <img src="images/gis/i-plus.svg" style="width: 20px;">
+            </a>
+           </li>
+           <li class="minus" id="zoom-out">
+            <a href="#void" style="display: flex; justify-content: center; align-items: center;">
+              <img src="images/gis/i-minus.svg" style="width: 20px;">
+            </a>
+           </li>
+         </ul>
         </div>
       </div>
+     </div>
+   </section>
+      
+      
+   <!-- 실시간 해양환경 관측소 마우스 오버 팝업창 -->
+   <div id="real_time_inform" class="ol-new-popup">
+     <div id="mapLayer_head" class="ol-new-popup-head">
+      <h1 class="overlay-title" id="observatory_nm">
+        통영 학림
+        <span class="date">2022-10-04 14:30</span>
+       </h1>
+     </div>
+     <div id="mapLayer_content" class="tableWrap type3">
+      <table id="observatory_inform">
+        <tr>
+         <th>표층수온</th>
+         <th>중층수온</th>
+         <th>저층수온</th>
+        </tr>
+        <tr>
+         <td id="surface_class">23.2℃</td>
+         <td id="middle_class">미설치</td>
+         <td id="low_class">미설치</td>
+        </tr>
+        <tr>
+         <th>기온</th>
+         <td colspan="2" id="temp">미설치</td>
+        </tr>
+        <tr>
+         <th>염분</th>
+         <td colspan="2" id="salt">32.11</td>
+        </tr>
+        <tr>
+         <th>용존산소</th>
+         <td colspan="2" id="oxygen">7.04mg/L</td>
+        </tr>
+      </table>
+     </div>
+   </div>
 
       
-      <!-- 면허어장도 마우스 오버 팝업창 -->
-      <div id="fishing_ground_inform" class="ol-new-popup">
-        <div id="mapLayer_head" class="ol-new-popup-head">
-          <h1 class="overlay-title" id="license_nu">
-            양식장면허심사평가
-          </h1>
+   <!-- 면허어장도 마우스 오버 팝업창 -->
+   <div id="fishing_ground_inform" class="ol-new-popup">
+     <div id="mapLayer_head" class="ol-new-popup-head">
+      <h1 class="overlay-title" id="license_nu">양식장면허심사평가</h1>
+     </div>
+     <div id="mapLayer_content" class="tableWrap type3">
+      <table id="observatory_inform">
+        <tr>
+         <th>시도</th>
+         <td id="sido_name"></td>
+         <th>시군구</th>
+         <td id="sigungu_name"></td>
+         <th>어업시기</th>
+         <td id="fishery_season"></td>
+        </tr>
+        <tr>
+         <th>면허번호</th>
+         <td id="license_no"></td>
+         <th>어장번호</th>
+         <td id="fishery_nu"></td>
+         <th>어장면적</th>
+         <td id="fishery_space"></td>
+        </tr>
+        <tr>
+         <th>면허허가구분</th>
+         <td id="license_sort"></td>
+         <th>면허허가일자</th>
+         <td id="license_date"></td>
+         <th>양식방법</th>
+         <td id="fishery_method_m"></td>
+        </tr>
+        <tr>
+         <th>면허기간</th>
+         <td colspan="3" id="license_period"></td>
+         <th>양식업종류</th>
+         <td id="fishery_method_l"></td>
+        </tr>
+        <tr>
+         <th>유예기간</th>
+         <td colspan="3" id="post_period"></td>
+         <th>양식업구분</th>
+         <td id="fishery_type"></td>
+        </tr>
+        <tr>
+         <th>수면위치</th>
+         <td colspan="3" id="surface_loc"></td>
+         <th>어업생산품</th>
+         <td id="fishery_product"></td>
+        </tr>
+      </table>
+     </div>
+   </div>
+         
+         
+   <div id="custom-modal" class="custom-modal">
+     <div class="custom-modal-dialog">
+      <div class="custom-modal-content">
+        <div class="custom-modal-header">
+         <button type="button" class="btn-close" onclick="closeCustomModal()" data-bs-dismiss="modal" aria-label="Close"></button>
+          <p class="custom-modal-title" id="customModalLabel" style="font-size: 14px; font-weight: normal; color: #666666;">결과보고서</p><hr>
         </div>
-        <div id="mapLayer_content" class="tableWrap type3">
-          <table id="observatory_inform">
+        <div class="custom-modal-body">
+         <h2 class="custom-table-title" style="font-size: 12px; color: #555555;">지리정보 분석결과</h2>
+         <table id="custom-table">
+           <thead>
             <tr>
-              <th>시도</th>
-              <td id="sido_name"></td>
-              <th>시군구</th>
-              <td id="sigungu_name"></td>
-              <th>어업시기</th>
-              <td id="fishery_season"></td>
+              <th>어장도명</th>
+              <th>면적</th>
             </tr>
-            <tr>
-              <th>면허번호</th>
-              <td id="license_no"></td>
-              <th>어장번호</th>
-              <td id="fishery_nu"></td>
-              <th>어장면적</th>
-              <td id="fishery_space"></td>
-            </tr>
-            <tr>
-              <th>면허허가구분</th>
-              <td id="license_sort"></td>
-              <th>면허허가일자</th>
-              <td id="license_date"></td>
-              <th>양식방법</th>
-              <td id="fishery_method_m"></td>
-            </tr>
-            <tr>
-              <th>면허기간</th>
-              <td colspan="3" id="license_period"></td>
-              <th>양식업종류</th>
-              <td id="fishery_method_l"></td>
-            </tr>
-            <tr>
-              <th>유예기간</th>
-              <td colspan="3" id="post_period"></td>
-              <th>양식업구분</th>
-              <td id="fishery_type"></td>
-            </tr>
-            <tr>
-              <th>수면위치</th>
-              <td colspan="3" id="surface_loc"></td>
-              <th>어업생산품</th>
-              <td id="fishery_product"></td>
-            </tr>
-          </table>
+           </thead>
+           <tbody id="fishery_table_tbody">
+            <!-- 어장정보 위치 -->
+           </tbody>
+         </table>
         </div>
       </div>
+     </div>
+   </div>
    
-
    <script defer src="script/main/layer.js"></script>
    <script defer src="script/main/cluster.js"></script>
    <script defer src="script/main/category.js"></script>
    <script defer src="script/main/search.js"></script>
-
 </body>
