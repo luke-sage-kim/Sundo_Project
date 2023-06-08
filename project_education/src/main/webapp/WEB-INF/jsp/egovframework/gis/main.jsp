@@ -85,7 +85,7 @@
                                                                                  </li>
                                                                               </c:when>
                                                                               <c:otherwise>
-                                                                                 <input type="checkbox" class="checkLayer" id="checkLayer${list3.id}">${list3.name}<br>                                                                              </c:otherwise>
+                                                                                 <input type="checkbox" class="checkLayer" id="checkLayer${list3.id}">&nbsp;${list3.name}<br>                                                                              </c:otherwise>
                                                                           	  </c:choose>
                                                                         </c:if>
                                                                      </c:forEach>
@@ -93,7 +93,7 @@
                                                                </li>
                                                             </c:when>
                                                             <c:otherwise>
-                                                               <input type="checkbox" class="checkLayer" id="checkLayer${list2.id}">${list2.name}<br> 
+                                                               <input type="checkbox" class="checkLayer" id="checkLayer${list2.id}">&nbsp;${list2.name}<br> 
                                                             </c:otherwise>
                                                          </c:choose>
                                                       </c:if>
@@ -102,7 +102,7 @@
                                              </li>
                                           </c:when>
                                           <c:otherwise>
-                                             <input type="checkbox" class="checkLayer" id="checkLayer${list1.id}">${list1.name}<br> 
+                                             <input type="checkbox" class="checkLayer" id="checkLayer${list1.id}">&nbsp;${list1.name}<br> 
                                           </c:otherwise>
                                        </c:choose>
                                     </c:if>
