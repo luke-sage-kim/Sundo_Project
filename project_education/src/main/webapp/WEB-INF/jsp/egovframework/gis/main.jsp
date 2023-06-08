@@ -32,21 +32,25 @@
               <div class="gis-list-tit" style="position: relative;">
                  <img src="images/gis/i-search.svg" style="position: absolute; right: 91%; top: 40%; transform: translateY(-50%);">
                  <p style="display: inline-block;">검색</p>
-                 <input id="search-input" type="text" style="display: inline-block;margin-left: 10px;margin-top: -3px;">
+                 <input id="search-input" type="text" style="display: inline-block; margin-left: 10px;margin-top: -3px;">
               </div>
               
                   
                   <div>
                      <form>
                            <label id="clusterDistance">cluster distance</label>
-                         <input id="distance" type="range" min="0" max="100" step="1" value="40"/>
+                         <input id="distance" type="range" min="0" max="100" step="2" value="30"/>
                       </form>
                   </div>
                     <div class="gis-list-table">
+                     <table id="clusterCategory">
+                     	<tr>
+                     		<td id="category-all">DB</td>
+                     		<td id="category-selected">선택 레이어</td>
+                     	</tr> 	
+                     </table>
+                     		<div><button type="submit" id="category-reset">초기화</button></div>
                      <div class="scrollable-div">
-                        <button type="submit" id="category-all">전체 레이어</button>
-                        <button type="submit" id="category-selected">선택된 레이어</button>
-                        <button type="submit" id="category-reset">레이어 초기화</button>
                         <ul id="foldable-list">
                            <li>해역이용영향평가GIS레이어
                               <ul>
@@ -125,6 +129,7 @@
                </div>
             </div>
          </div>
+         
          
          <div class="gis-map" id="gis_map">
             <div class="gis-map-btn">
@@ -880,9 +885,10 @@
            });
        });
       </script>
-      <script defer src="script/main/layer.js?0607"></script>
-      <script defer src="script/main/cluster.js?0607"></script>
-      <script defer src="script/main/category.js?0607_12"></script>
+      <script defer src="script/main/layer.js"></script>
+      <script defer src="script/main/cluster.js"></script>
+      <script defer src="script/main/category.js"></script>
+      
   
 
 </body>

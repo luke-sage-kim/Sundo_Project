@@ -38,7 +38,7 @@ let Satellite = new ol.layer.Tile({
 });
   
 	
-  //vworld 지도 입력 
+  // vworld 지도 입력 
   var map = new ol.Map({
     layers: [Hybrid, white, Satellite, Base],
     target: 'gis_map',
