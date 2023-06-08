@@ -180,8 +180,43 @@
    
    
    #category-reset {
- 	float: right;
- 	margin:5px;
- 	padding: 2px;
+    float: right;
+    margin:5px;
+    padding: 2px;
     border: 1px solid;
    }
+   
+   
+   
+   
+   
+  #category-reset {
+  float: right;
+  margin-right: 5px;
+  margin-top: 5px;
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 2px #0056b3;
+  margin-left: 8px;
+  margin-bottom: 10px;
+}
+
+#category-reset:hover {
+  background-color: #0056b3;
+}
+
+
+#category-reset:active {
+  background-color: #00499e;
+  box-shadow: 0 1px #00346b;
+  transform: translateY(1px);
+    }
