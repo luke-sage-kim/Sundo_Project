@@ -236,12 +236,14 @@ var wfsLayer = new ol.layer.Vector({
 // 2023-06-01 조경민
 
 // Overlay 요소를 생성하여 feature 정보를 표시할 팝업을 추가
+
 var overlay = new ol.Overlay({
   element: document.getElementById('real_time_inform'),
   positioning: 'bottom-center',
   stopEvent: false,
   offset: [0, -10]
 });
+
 map.addOverlay(overlay);
 
 // 클릭 이벤트 핸들러
@@ -303,7 +305,6 @@ map.on('pointermove', function(event) {
     function nullCheckOxygen(checkedElement){
       return checkedElement != null ? checkedElement+'mg/L' : '미설치';
    }
-    
     // 팝업창에 정보 입력
     observatory_nm.innerHTML = nullCheck(properties['observator']).replace(/\(.*\)/g, '')+
    '<span class="date">'+ (properties['obsdtm'] != null ? formatTime(properties['obsdtm']) : '자료없음' )+'</span>';
@@ -317,12 +318,12 @@ map.on('pointermove', function(event) {
     
     // 팝업을 클릭한 피처의 위치에 표시 
     overlay.setPosition(event.coordinate);
+	}
   }
-}
 });
      
 //------------------------------------------------------------------------------------
-// 화면 줌인/ 아웃 버튼
+// 화면 줌인 / 아웃 버튼
 
 document.getElementById('zoom-out').onclick = function() {
    var view = map.getView();

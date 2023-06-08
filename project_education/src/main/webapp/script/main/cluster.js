@@ -40,25 +40,28 @@ var clusterDistance = distance.value; // 클러스터링 거리 설정
 // rnd_layer 스타일 설정
 var rndClusterStyle = new ol.style.Style({
   image: new ol.style.Circle({
-    radius: 10,
+    radius: 12,
     fill: new ol.style.Fill({ color: 'rgba(0, 255, 0, 0.5)' }),
     stroke: new ol.style.Stroke({ color: 'blue', width: 1 })
   }),
   text: new ol.style.Text({
     text: '',
-    fill: new ol.style.Fill({ color: '#fff' })
+    fill: new ol.style.Fill({ color: '#fff' }),
+ 	font: 'bold 12px Arial'
   })
 });
+
 // marine_eis_data_layer 스타일 설정
 var marineClusterStyle = new ol.style.Style({
   image: new ol.style.Circle({
-    radius: 10,
+    radius: 12,
     fill: new ol.style.Fill({ color: 'rgba(0, 0, 255, 0.5)' }),
     stroke: new ol.style.Stroke({ color: 'blue', width: 1 })
   }),
   text: new ol.style.Text({
     text: '',
-    fill: new ol.style.Fill({ color: '#fff' })
+    fill: new ol.style.Fill({ color: '#fff' }),
+ 	font: 'bold 12px Arial'
   })
 });
 
@@ -150,7 +153,7 @@ function clusterLayerUpdate(){
 	rndClusterLayer.getSource().getSource().clear();
 	rndClusterLayer.setSource(newRndCluster);
 	
-	//marine 클러스터 레이어 변경
+	// marine 클러스터 레이어 변경
 	var newMarineVectorSource = new ol.source.Vector({
   		format: new ol.format.GeoJSON(),
   		url: function(extent) {
