@@ -6,14 +6,14 @@
 <jsp:include page="/WEB-INF/jsp/egovframework/include/gis_header.jsp"/>
 
 <head>
-	<link type="text/css" href="style/gis.css" rel="stylesheet">
-	<link type="text/css" href="style/main.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	<script defer src="script/main/main.js"></script>
+   <link type="text/css" href="style/gis.css" rel="stylesheet">
+   <link type="text/css" href="style/main.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+   <script defer src="script/main/main.js"></script>
 </head>
-	<script type="module" src="main.js"></script>
-	
+   <script type="module" src="main.js"></script>
+   
     <!-- OpenLayers 라이브러리 스타일시트 -->
     <link rel="stylesheet" href="https://openlayers.org/en/v4.6.4/css/ol.css" type="text/css">
     
@@ -42,16 +42,17 @@
                      <form>
                            <label id="clusterDistance">cluster distance</label>
                          <input id="distance" type="range" min="0" max="100" step="2" value="30"/>
+                          <div class="separator"></div> <!-- 구분선 -->
                       </form>
                   </div>
                     <div class="gis-list-table">
                      <table id="clusterCategory">
-                     	<tr>
-                     		<td id="category-all">DB</td>
-                     		<td id="category-selected">선택 레이어</td>
-                     	</tr> 	
+                        <tr>
+                           <td id="category-all">DB</td>
+                           <td id="category-selected">선택 레이어</td>
+                        </tr>    
                      </table>
-                     		<div><button type="submit" id="category-reset">초기화</button></div>
+                           <div><button type="submit" id="category-reset">초기화</button></div>
                      <div class="scrollable-div">
                         <ul id="foldable-list">
                            <li>해역이용영향평가GIS레이어
@@ -81,10 +82,8 @@
                                                                                                    <li>${list4.name}</li>
                                                                                                 </c:when>
                                                                                                 <c:otherwise>
-                                                                                                   <li>
                                                                                                      <input type="checkbox" class="checkLayer" id="checkLayer${list4.id}">
-                                                                              ${list4.name}
-                                                                              </li>
+                                                                              ${list4.name}<br>
                                                                                                 </c:otherwise>
                                                                                              </c:choose>
                                                                                           </c:if>
@@ -93,9 +92,7 @@
                                                                                  </li>
                                                                               </c:when>
                                                                               <c:otherwise>
-                                                                                 <li>
-                                                                                 <input type="checkbox" class="checkLayer" id="checkLayer${list3.id}">${list3.name} 
-                                                                                </li>
+                                                                                 <input type="checkbox" class="checkLayer" id="checkLayer${list3.id}">${list3.name}<br> 
                                                                               </c:otherwise>
                                                                                </c:choose>
                                                                         </c:if>
@@ -104,9 +101,7 @@
                                                                </li>
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <li>
-                                                               <input type="checkbox" class="checkLayer" id="checkLayer${list2.id}">${list2.name}
-                                                              </li>
+                                                               <input type="checkbox" class="checkLayer" id="checkLayer${list2.id}">${list2.name}<br>
                                                             </c:otherwise>
                                                          </c:choose>
                                                       </c:if>
@@ -115,9 +110,7 @@
                                              </li>
                                           </c:when>
                                           <c:otherwise>
-                                             <li>
-                                             <input type="checkbox" class="checkLayer" id="checkLayer${list1.id}">${list1.name} 
-                                             </li>
+                                             <input type="checkbox" class="checkLayer" id="checkLayer${list1.id}">${list1.name}<br> 
                                           </c:otherwise>
                                        </c:choose>
                                     </c:if>
@@ -258,128 +251,100 @@
       
       <!-- 실시간 해양환경 관측소 마우스 오버 팝업창 -->
       <div id="real_time_inform" class="ol-new-popup">
-		  <div id="mapLayer_head" class="ol-new-popup-head">
-		    <h1 class="overlay-title" id="observatory_nm">
-		      통영 학림
-		      <span class="date">2022-10-04 14:30</span>
-		    </h1>
-		  </div>
-		  <div id="mapLayer_content" class="tableWrap type3">
-		    <table id="observatory_inform">
-		      <tr>
-		        <th>표층수온</th>
-		        <th>중층수온</th>
-		        <th>저층수온</th>
-		      </tr>
-		      <tr>
-		        <td id="surface_class">23.2℃</td>
-		        <td id="middle_class">미설치</td>
-		        <td id="low_class">미설치</td>
-		      </tr>
-		      <tr>
-		        <th>기온</th>
-		        <td colspan="2" id="temp">미설치</td>
-		      </tr>
-		      <tr>
-		        <th>염분</th>
-		        <td colspan="2" id="salt">32.11</td>
-		      </tr>
-		      <tr>
-		        <th>용존산소</th>
-		        <td colspan="2" id="oxygen">7.04mg/L</td>
-		      </tr>
-		    </table>
-		  </div>
-		</div>
+        <div id="mapLayer_head" class="ol-new-popup-head">
+          <h1 class="overlay-title" id="observatory_nm">
+            통영 학림
+            <span class="date">2022-10-04 14:30</span>
+          </h1>
+        </div>
+        <div id="mapLayer_content" class="tableWrap type3">
+          <table id="observatory_inform">
+            <tr>
+              <th>표층수온</th>
+              <th>중층수온</th>
+              <th>저층수온</th>
+            </tr>
+            <tr>
+              <td id="surface_class">23.2℃</td>
+              <td id="middle_class">미설치</td>
+              <td id="low_class">미설치</td>
+            </tr>
+            <tr>
+              <th>기온</th>
+              <td colspan="2" id="temp">미설치</td>
+            </tr>
+            <tr>
+              <th>염분</th>
+              <td colspan="2" id="salt">32.11</td>
+            </tr>
+            <tr>
+              <th>용존산소</th>
+              <td colspan="2" id="oxygen">7.04mg/L</td>
+            </tr>
+          </table>
+        </div>
+      </div>
 
       
-		<!-- 면허어장도 마우스 오버 팝업창 -->
-		<div id="fishing_ground_inform" class="ol-new-popup">
-		  <div id="mapLayer_head" class="ol-new-popup-head">
-		    <h1 class="overlay-title" id="license_nu">
-		      양식장면허심사평가
-		    </h1>
-		  </div>
-		  <div id="mapLayer_content" class="tableWrap type3">
-		    <table id="observatory_inform">
-		      <tr>
-		        <th>시도</th>
-		        <td id="sido_name"></td>
-		        <th>시군구</th>
-		        <td id="sigungu_name"></td>
-		        <th>어업시기</th>
-		        <td id="fishery_season"></td>
-		      </tr>
-		      <tr>
-		        <th>면허번호</th>
-		        <td id="license_no"></td>
-		        <th>어장번호</th>
-		        <td id="fishery_nu"></td>
-		        <th>어장면적</th>
-		        <td id="fishery_space"></td>
-		      </tr>
-		      <tr>
-		        <th>면허허가구분</th>
-		        <td id="license_sort"></td>
-		        <th>면허허가일자</th>
-		        <td id="license_date"></td>
-		        <th>양식방법</th>
-		        <td id="fishery_method_m"></td>
-		      </tr>
-		      <tr>
-		        <th>면허기간</th>
-		        <td colspan="3" id="license_period"></td>
-		        <th>양식업종류</th>
-		        <td id="fishery_method_l"></td>
-		      </tr>
-		      <tr>
-		        <th>유예기간</th>
-		        <td colspan="3" id="post_period"></td>
-		        <th>양식업구분</th>
-		        <td id="fishery_type"></td>
-		      </tr>
-		      <tr>
-		        <th>수면위치</th>
-		        <td colspan="3" id="surface_loc"></td>
-		        <th>어업생산품</th>
-		        <td id="fishery_product"></td>
-		      </tr>
-		    </table>
-		  </div>
-		</div>
-   <div id="custom-modal" class="custom-modal">
-      <div class="custom-modal-dialog">
-         <div class="custom-modal-content">
-            <div class="custom-modal-header">
-               <button type="button" class="btn-close" onclick="closeCustomModal()" 
-               data-bs-dismiss="modal" aria-label="Close">
-               </button>
-               <p class="custom-modal-title" id="customModalLabel"
-               style="font-size: 14px; font-weight: normal; color: #666666;">결과보고서</p>
-               <hr>
-            </div>
-            <div class="custom-modal-body">
-               <h2 class="custom-table-title" style="font-size: 12px; color: #555555;">
-               지리정보 분석결과</h2>
-               <table id="custom-table">
-                  <thead>
-                     <tr>
-                        <th>어장도명</th>
-                        <th>면적</th>
-                     </tr>
-                  </thead>
-                  <tbody id="fishery_table_tbody">
-                  <!-- 어장정보 위치 -->
-                  </tbody>
-               </table>
-            </div>
-         </div>
+      <!-- 면허어장도 마우스 오버 팝업창 -->
+      <div id="fishing_ground_inform" class="ol-new-popup">
+        <div id="mapLayer_head" class="ol-new-popup-head">
+          <h1 class="overlay-title" id="license_nu">
+            양식장면허심사평가
+          </h1>
+        </div>
+        <div id="mapLayer_content" class="tableWrap type3">
+          <table id="observatory_inform">
+            <tr>
+              <th>시도</th>
+              <td id="sido_name"></td>
+              <th>시군구</th>
+              <td id="sigungu_name"></td>
+              <th>어업시기</th>
+              <td id="fishery_season"></td>
+            </tr>
+            <tr>
+              <th>면허번호</th>
+              <td id="license_no"></td>
+              <th>어장번호</th>
+              <td id="fishery_nu"></td>
+              <th>어장면적</th>
+              <td id="fishery_space"></td>
+            </tr>
+            <tr>
+              <th>면허허가구분</th>
+              <td id="license_sort"></td>
+              <th>면허허가일자</th>
+              <td id="license_date"></td>
+              <th>양식방법</th>
+              <td id="fishery_method_m"></td>
+            </tr>
+            <tr>
+              <th>면허기간</th>
+              <td colspan="3" id="license_period"></td>
+              <th>양식업종류</th>
+              <td id="fishery_method_l"></td>
+            </tr>
+            <tr>
+              <th>유예기간</th>
+              <td colspan="3" id="post_period"></td>
+              <th>양식업구분</th>
+              <td id="fishery_type"></td>
+            </tr>
+            <tr>
+              <th>수면위치</th>
+              <td colspan="3" id="surface_loc"></td>
+              <th>어업생산품</th>
+              <td id="fishery_product"></td>
+            </tr>
+          </table>
+        </div>
       </div>
-   </div>
+   
 
-	<script defer src="script/main/layer.js"></script>
-	<script defer src="script/main/cluster.js"></script>
-	<script defer src="script/main/category.js"></script>
-	<script defer src="script/main/search.js"></script>
+   <script defer src="script/main/layer.js"></script>
+   <script defer src="script/main/cluster.js"></script>
+   <script defer src="script/main/category.js"></script>
+   <script defer src="script/main/search.js"></script>
 
 </body>
